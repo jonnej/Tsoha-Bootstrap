@@ -9,5 +9,21 @@
   });
 
   $routes->get('/login', function() {
-    HelloWorldController::sandbox();
+    HelloWorldController::login();
+  });
+
+  $routes->get('/register', function() {
+    HelloWorldController::register();
+  });
+
+  $routes->get('/discussionareas', function() {
+    HelloWorldController::discussionareas();
+  });
+
+  $routes->get('/areatopics', function() {
+    HelloWorldController::areatopics();
+  });
+
+  $routes->get('/topic', function() {
+    HelloWorldController::topic();
   });
