@@ -7,6 +7,11 @@ CREATE TABLE Player(
   admin boolean DEFAULT FALSE
 );
 
+CREATE TABLE Tag(
+  id SERIAL PRIMARY KEY,
+  name varchar(20)
+);
+
 CREATE TABLE Area(
   id SERIAL PRIMARY KEY,
   player_id INTEGER REFERENCES Player(id),
@@ -29,4 +34,10 @@ CREATE TABLE Message(
 
   added timestamp DEFAULT current_timestamp,
   modified timestamp
+);
+
+CREATE TABLE Topictag(
+  id SERIAL PRIMARY KEY,
+  topic_id INTEGER REFERENCES Topic(id),
+  tag_id INTEGER REFERENCES Tag(id)
 );
