@@ -1,7 +1,7 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 CREATE TABLE Player(
   id SERIAL PRIMARY KEY,
-  nickname varchar(50) UNIQUE NOT NULL,
+  nickname varchar(50) NOT NULL,
   password varchar(50) NOT NULL,
   created timestamp DEFAULT current_timestamp,
   admin boolean DEFAULT FALSE
@@ -32,7 +32,7 @@ CREATE TABLE Message(
   id SERIAL PRIMARY KEY,
   player_id INTEGER REFERENCES Player(id),
   topic_id INTEGER REFERENCES Topic(id),
-  msgtext TEXT,
+  msgtext varchar(1000) NOT NULL,
   added timestamp DEFAULT current_timestamp,
   modified timestamp
 );

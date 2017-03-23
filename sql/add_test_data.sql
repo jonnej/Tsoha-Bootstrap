@@ -6,6 +6,6 @@ INSERT INTO Area (player_id, name, description) VALUES (1, 'Ulkomaat', 'Keskuste
 INSERT INTO Topic (area_id, player_id, name) VALUES (1, 1, 'Juntein kaupunki');
 INSERT INTO Topic (area_id, player_id, name) VALUES (1, 2, 'Kivoin kaupunki');
 INSERT INTO Topic (area_id, player_id, name) VALUES (1, 1, 'Paras kaupunki');
-INSERT INTO Message (player_id, topic_id, ) VALUES (1, 1, 'Hesa');
-INSERT INTO Message (player_id, topic_id, ) VALUES (2, 1, 'Vantaa');
-INSERT INTO Message (player_id, topic_id, ) VALUES (1, 2, 'Vantaa');
+INSERT INTO Message (player_id, topic_id, msgtext) VALUES (1, 1, 'Hesa');
+INSERT INTO Message (player_id, topic_id, msgtext) VALUES (2, 1, 'Vantaa');
+INSERT INTO Message (player_id, topic_id, msgtext) VALUES (1, 2, 'Vantaa');
