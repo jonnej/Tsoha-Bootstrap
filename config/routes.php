@@ -27,3 +27,11 @@
   $routes->get('/topic', function() {
     HelloWorldController::topic();
   });
+
+  $routes->get('/search', function() {
+    HelloWorldController::search();
+  });
+
+  $routes->get('/topic', function() {
+    HelloWorldController::topic();
+  });

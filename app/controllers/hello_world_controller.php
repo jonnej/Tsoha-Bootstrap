@@ -30,4 +30,8 @@
     public static function topic(){
     View::make('topic.html');
     }
+
+    public static function search(){
+    View::make('search.html');
+    }
 }

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Täällä etsitään ja ehkä löydetään</h1>
+
+  <p><strong>Etsi käyttäjiä</strong></p>
+
+  <form>
+    <div class="form-group">
+      <label>Käyttäjätunnus</label>
+      <input class="form-control" type="text">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Etsi käyttäjä</button>
+  </form>
+<br>
+  <p><strong>Etsi topiceja</strong></p>
+
+  <form>
+    <div class="form-group">
+      <label>Hae topicin nimen perusteella</label>
+      <input class="form-control" type="text">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Hae topiceja</button>
+  </form>
+
+
+
+{% endblock %}
