@@ -22,6 +22,7 @@ CREATE TABLE Area(
 CREATE TABLE Topic(
   id SERIAL PRIMARY KEY,
   area_id INTEGER REFERENCES Area(id),
+  player_id INTEGER REFERENCES Player(id),
   name varchar(75) NOT NULL,
   added timestamp DEFAULT current_timestamp,
   modified timestamp
@@ -31,7 +32,7 @@ CREATE TABLE Message(
   id SERIAL PRIMARY KEY,
   player_id INTEGER REFERENCES Player(id),
   topic_id INTEGER REFERENCES Topic(id),
-
+  msgtext TEXT,
   added timestamp DEFAULT current_timestamp,
   modified timestamp
 );
