@@ -1,5 +1,4 @@
 <?php
-  require 'app/models/message.php';
   class HelloWorldController extends BaseController{
 
     public static function index(){

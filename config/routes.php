@@ -17,7 +17,7 @@
   });
 
   $routes->get('/discussionareas', function() {
-    HelloWorldController::discussionareas();
+    AreaController::index();
   });
 
   $routes->get('/areatopics', function() {
