@@ -14,21 +14,14 @@
       </thead>
 
       <tbody>
-        {% for area in areas % }
+        {% for area in areas %}
           <tr>
-            <td><a href="/tsoha/areatopics">{{area.name}}</td>
-              <td>{{area.topicCount}}</td>
-              <td>{{area.messageCount}}</td>
-              <td>Uusin viesti</td>
+            <td>{{area.name}}</td>
+            <td>{{area.topicCount(area.id)}}</td>
+            <td>{{area.messageCount(area.id)}}</td>
+            <td>Uusin viesti</td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
-
-
-
-
-
-
-
-
 {% endblock %}

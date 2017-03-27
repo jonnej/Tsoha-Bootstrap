@@ -2,6 +2,12 @@
 
   class Area extends BaseModel{
 
+    public $id, $player_id, $name, $description;
+
+    public function __construct($attributes){
+      parent::__construct($attributes);
+  }
+
     public static function all(){
 
       $query = DB::connection()->prepare('SELECT * FROM Area');

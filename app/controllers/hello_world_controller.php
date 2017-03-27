@@ -23,9 +23,9 @@
     View::make('register.html');
     }
 
-    public static function discussionareas(){
-    View::make('discussionareas.html');
-    }
+    // public static function discussionareas(){
+    // View::make('discussionareas.html');
+    // }
 
     public static function areatopics(){
     View::make('areatopics.html');

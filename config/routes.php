@@ -16,7 +16,7 @@
     HelloWorldController::register();
   });
 
-  $routes->get('/discussionareas', function() {
+  $routes->get('/area/index', function() {
     AreaController::index();
   });
 
