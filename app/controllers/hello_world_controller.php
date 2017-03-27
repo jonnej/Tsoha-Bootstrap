@@ -1,5 +1,5 @@
 <?php
-
+  require 'app/models/message.php';
   class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -8,8 +8,13 @@
     }
 
     public static function sandbox(){
-      View::make('login.html');
-    }
+    $message = Message::findByTopic(1);
+    $messages = Message::all();
+    // Kint-luokan dump-metodi tulostaa muuttujan arvon
+    Kint::dump($messages);
+    Kint::dump($message);
+  }
+
 
     public static function login(){
     View::make('login.html');
