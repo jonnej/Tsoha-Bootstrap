@@ -16,8 +16,12 @@
     HelloWorldController::register();
   });
 
-  $routes->get('/area/index', function() {
+  $routes->get('/area', function() {
     AreaController::index();
+  });
+
+  $routes->get('/area/:id', function($id) {
+    AreaController::show($id);
   });
 
   $routes->get('/areatopics', function() {

@@ -2,6 +2,12 @@
 
  class Message extends BaseModel{
 
+   public $id, $player_id, $topic_id, $msgtext, $added, $modified;
+
+   public function __construct($attributes){
+     parent::__construct($attributes);
+ }
+
    public static function all(){
 
      $query = DB::connection()->prepare('SELECT * FROM Message');
@@ -36,6 +42,7 @@
        'msgtext' => $row['msgtext'],
        'added' => $row['added']
      ));
+     
      }
 
      return $messages;
