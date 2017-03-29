@@ -13,13 +13,13 @@
       </thead>
 
       <tbody>
-        <!-- {% for topic in topics %} -->
+        {% for topic in topics %}
           <tr>
             <td>{{topic.name}}</td>
             <td>{{topic.messageCount(topic.id)}}</td>
             <td>Uusin viesti</td>
         </tr>
-        <!-- {% endfor %} -->
+        {% endfor %}
       </tbody>
     </table>
 {% endblock %}

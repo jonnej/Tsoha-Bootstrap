@@ -39,3 +39,7 @@
   $routes->get('/topic', function() {
     HelloWorldController::topic();
   });
+
+  $routes->get('/message/new'), function() {
+    MessageController::new();
+  });
