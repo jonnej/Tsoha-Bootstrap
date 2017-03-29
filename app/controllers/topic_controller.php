@@ -8,7 +8,7 @@
       Kint::dump($topic);
       Kint::dump($messages);
       // $messages = Message::areaTopics($id);
-      View::make('topic/show.html', array('messages' => $messages));
+      View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic));
     }
 
     public static function newTopic(){

@@ -28,5 +28,5 @@
         {% endfor %}
       </tbody>
     </table>
-    <p><a href="{{base_path}}/area/1" class ="btn btn-primary">Takaisin</a></p>
+    <p><a href="{{base_path}}/area/{{topic.area_id}}" class ="btn btn-primary">Takaisin {{topic.area_id.name}}</a></p>
 {% endblock %}

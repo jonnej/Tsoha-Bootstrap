@@ -14,7 +14,7 @@
       $topics = Topic::findByArea($id);
       Kint::dump($area);
       Kint::dump($topics);
-      View::make('area/show.html', array('topics' => $topics), array('area' => $area));
+      View::make('area/show.html', array('topics' => $topics, 'area' => $area));
     }
 
     public static function newArea(){
