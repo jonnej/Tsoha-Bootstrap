@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{topic.name}}</h1>
+
+<br>
+  <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Käyttäjä</th>
+          <th>Viesti</th>
+          <th>Lähetysaika</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for message in messages %}
+        <tr>
+          <td>Staattinen käyttäjä</td>
+          <td>{{message.msgtext}}</td>
+          <td>{{message.added}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p><a href="{{base_path}}/area/1" class ="btn btn-primary">Takaisin</a></p>
+{% endblock %}

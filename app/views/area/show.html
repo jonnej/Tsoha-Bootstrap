@@ -2,6 +2,7 @@
 {% block content %}
   <h1>{{area.name}}</h1>
 
+<p><a href="{{base_path}}/topic/new" class ="btn btn-primary">Uusi Topic</a></p>
 <br>
   <table class="table table-striped table-bordered">
       <thead>
@@ -15,7 +16,7 @@
       <tbody>
         {% for topic in topics %}
           <tr>
-            <td>{{topic.name}}</td>
+            <td><a href="{{base_path}}/topic/{{topic.id}}">{{topic.name}}</a></td>
             <td>{{topic.messageCount(topic.id)}}</td>
             <td>Uusin viesti</td>
         </tr>

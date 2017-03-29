@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Aloita uusi topic!</h1>
+<br>
+
+  <form method="post" action="{{base_path}}/topic">
+    <div class="form-group">
+      <label>Area id</label>
+      <input name="area_id" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Player id</label>
+      <input name="player_id" class="form-control" type="text">
+    </div>
+    
+    <div class="form-group">
+      <label>Topicin nimi</label>
+      <input name="name" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Viesti</label>
+      <textarea name="msgtext" class="form-control" type="text"></textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Aloita uusi topic</button>
+    </div>
+  </form>
+
+{% endblock %}

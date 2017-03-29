@@ -8,6 +8,15 @@
      parent::__construct($attributes);
  }
 
+ public function save(){
+
+   $query = DB::connection()->prepare('INSERT INTO Message (player_id, topic_id, msgtext) VALUES (:player_id, :topic_id, :msgtext) RETURNING id');
+   $query->execute(array('player_id' => $this->player_id, 'topic_id' => $this->topic_id, 'name' => $this->msgtext));
+   $row = $query->fetch();
+   $this->id = $row['id'];
+
+ }
+
    public static function all(){
 
      $query = DB::connection()->prepare('SELECT * FROM Message');
@@ -21,7 +30,8 @@
        'player_id' => $row['player_id'],
        'topic_id' => $row['topic_id'],
        'msgtext' => $row['msgtext'],
-       'added' => $row['added']
+       'added' => $row['added'],
+       'modified' => $row['modified']
      ));
      }
 
@@ -42,7 +52,7 @@
        'msgtext' => $row['msgtext'],
        'added' => $row['added']
      ));
-     
+
      }
 
      return $messages;

@@ -11,9 +11,9 @@
 
     public static function show($id){
       $area = Area::find($id);
-      $topics = Area::areaTopics($id);
+      $topics = Topic::findByArea($id);
       Kint::dump($area);
       Kint::dump($topics);
-      View::make('area/show.html', array('area' => $area), array('topics' => $topics));
+      View::make('area/show.html', array('topics' => $topics), array('area' => $area));
     }
   }

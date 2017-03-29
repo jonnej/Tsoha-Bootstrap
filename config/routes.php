@@ -40,6 +40,18 @@
     HelloWorldController::topic();
   });
 
-  $routes->get('/message/new'), function() {
-    MessageController::new();
+  $routes->get('/message/new', function() {
+    MessageController::newMessage();
   });
+
+  $routes->get('/topic/new', function() {
+    TopicController::newTopic();
+  });
+
+  $routes->get('/topic/:id', function($id){
+    TopicController::show($id);
+  });
+
+  $routes->post('/topic', function(){
+  TopicController::store();
+});
