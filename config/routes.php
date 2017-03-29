@@ -20,28 +20,36 @@
     AreaController::index();
   });
 
+  $routes->get('/area/new', function() {
+    AreaController::newArea();
+  });
+
   $routes->get('/area/:id', function($id) {
     AreaController::show($id);
   });
 
-  $routes->get('/areatopics', function() {
-    HelloWorldController::areatopics();
+  $routes->post('/area', function(){
+    AreaController::store();
   });
 
-  $routes->get('/topic', function() {
-    HelloWorldController::topic();
-  });
+  // $routes->get('/areatopics', function() {
+  //   HelloWorldController::areatopics();
+  // });
+  //
+  // $routes->get('/topic', function() {
+  //   HelloWorldController::topic();
+  // });
 
   $routes->get('/search', function() {
     HelloWorldController::search();
   });
 
-  $routes->get('/topic', function() {
-    HelloWorldController::topic();
-  });
-
   $routes->get('/message/new', function() {
     MessageController::newMessage();
+  });
+
+  $routes->post('/message', function(){
+    MessageController::store();
   });
 
   $routes->get('/topic/new', function() {
@@ -53,5 +61,5 @@
   });
 
   $routes->post('/topic', function(){
-  TopicController::store();
-});
+    TopicController::store();
+  });

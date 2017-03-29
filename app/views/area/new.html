@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Lisää uusi keskustelualue</h1>
+
+<form method="post" action="{{base_path}}/area">
+  <div class="form-group">
+    <label>Player id</label>
+    <input name="player_id" class="form-control" type="text">
+  </div>
+
+  <div class="form-group">
+    <label>Keskustelualueen nimi</label>
+    <input name="name" class="form-control" type="text" maxlength="50">
+  </div>
+
+  <div class="form-group">
+    <label>Keskustelualueen kuvaus</label>
+    <textarea name="description" class="form-control" type="text" maxlength="150"></textarea>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Luo uusi keskustelualue</button>
+  </div>
+</form>
+
+<p><a href="{{base_path}}/area" class ="btn btn-primary">Palaa takaisin alueisiin</a></p>
+
+{% endblock %}

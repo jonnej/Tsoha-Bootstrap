@@ -27,6 +27,12 @@
       ));
 
       $topic->save();
+      $message = new Message(array(
+        'player_id' => $params['player_id'],
+        'topic_id' => $topic->id,
+        'msgtext' => $params['msgtext'],
+      ));
+      $message->save();
 
       Redirect::to('/topic/' . $topic->id, array('message' => 'Uusi topic luotu!'));
     }

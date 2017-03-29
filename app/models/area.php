@@ -8,8 +8,15 @@
       parent::__construct($attributes);
   }
 
-    public static function all(){
+    public function save(){
+      $query = DB::connection()->prepare('INSERT INTO Area (player_id, name, description) VALUES (:player_id, :name, :description) RETURNING id');
+      $query->execute(array('player_id' => $this->player_id, 'name' => $this->name, 'description' => $this->description));
+      $row = $query->fetch();
+      $this->id = $row['id'];
 
+  }
+
+    public static function all(){
       $query = DB::connection()->prepare('SELECT * FROM Area');
       $query->execute();
       $rows = $query->fetchAll();
@@ -30,7 +37,6 @@
     public static function find($id){
       $query = DB::connection()->prepare('SELECT * FROM Area WHERE id = :id');
       $query->execute(array('id' => $id));
-
       $row = $query->fetch();
 
       if($row){
@@ -48,25 +54,25 @@
 
     }
 
-    public static function areaTopics($area_id){
-      $query = DB::connection()->prepare('SELECT * FROM Topic WHERE area_id = :area_id');
-      $query->execute(array('area_id' => $area_id));
-      $rows = $query->fetchAll();
-      $topics = array();
-
-      foreach($rows as $row){
-        $topics = new Topic(array(
-        'id' => $row['id'],
-        'area_id' => $row['area_id'],
-        'player_id' => $row['player_id'],
-        'name' => $row['name'],
-        'added' => $row['added'],
-        'modified' => $row['modified']
-      ));
-      }
-
-      return $topics;
-    }
+    // public static function areaTopics($area_id){
+    //   $query = DB::connection()->prepare('SELECT * FROM Topic WHERE area_id = :area_id');
+    //   $query->execute(array('area_id' => $area_id));
+    //   $rows = $query->fetchAll();
+    //   $topics = array();
+    //
+    //   foreach($rows as $row){
+    //     $topics = new Topic(array(
+    //     'id' => $row['id'],
+    //     'area_id' => $row['area_id'],
+    //     'player_id' => $row['player_id'],
+    //     'name' => $row['name'],
+    //     'added' => $row['added'],
+    //     'modified' => $row['modified']
+    //   ));
+    //   }
+    //
+    //   return $topics;
+    // }
 
     public static function topicCount($area_id){
       $query = DB::connection()->prepare('SELECT COUNT(*) FROM Topic WHERE area_id = :area_id');
@@ -76,11 +82,11 @@
         echo 0;
       } else {
       echo $result[0];
-    }
+      }
     }
 
     public static function messageCount($area_id){
-      $query = DB::connection()->prepare('SELECT COUNT(*) AS result_count FROM Message INNER JOIN Topic ON Message.topic_id = Topic.id WHERE Topic.area_id = :area_id');
+      $query = DB::connection()->prepare('SELECT COUNT(*) FROM Message INNER JOIN Topic ON Message.topic_id = Topic.id WHERE Topic.area_id = :area_id');
       $query->execute(array('area_id' => $area_id));
       $result = $query->fetch();
 

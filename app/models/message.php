@@ -10,10 +10,10 @@
 
  public function save(){
 
-   $query = DB::connection()->prepare('INSERT INTO Message (player_id, topic_id, msgtext) VALUES (:player_id, :topic_id, :msgtext) RETURNING id');
-   $query->execute(array('player_id' => $this->player_id, 'topic_id' => $this->topic_id, 'name' => $this->msgtext));
+   $query = DB::connection()->prepare('INSERT INTO Message (player_id, topic_id, msgtext) VALUES (:player_id, :topic_id, :msgtext) RETURNING topic_id');
+   $query->execute(array('player_id' => $this->player_id, 'topic_id' => $this->topic_id, 'msgtext' => $this->msgtext));
    $row = $query->fetch();
-   $this->id = $row['id'];
+   $this->topic_id = $row['topic_id'];
 
  }
 

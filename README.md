@@ -12,8 +12,8 @@ Työn aiheena luoda keskustelufoorumi, jossa käyttäjä rekisteröityä, luoda 
 ## Linkkejä sovelluksen valmiisiin sivuihin:
 
 * [Etusivu](http://joju.users.cs.helsinki.fi/tsoha/)
-* [Keskustelualueet](http://joju.users.cs.helsinki.fi/tsoha/discussionareas)
+* [Keskustelualueet](http://joju.users.cs.helsinki.fi/tsoha/area)
 * [Kirjautuminen](http://joju.users.cs.helsinki.fi/tsoha/login)
 * [Rekisteröityminen](http://joju.users.cs.helsinki.fi/tsoha/register)
-* [Keskustelualueen Topicit](http://joju.users.cs.helsinki.fi/tsoha/areatopics)
-* [Topic](http://joju.users.cs.helsinki.fi/tsoha/topic)
+* [Keskustelualueen Topicit](http://joju.users.cs.helsinki.fi/tsoha/area/1)
+* [Topic](http://joju.users.cs.helsinki.fi/tsoha/topic/1)
