@@ -17,3 +17,4 @@ Työn aiheena luoda keskustelufoorumi, jossa käyttäjä rekisteröityä, luoda 
 * [Rekisteröityminen](http://joju.users.cs.helsinki.fi/tsoha/register)
 * [Keskustelualueen Topicit](http://joju.users.cs.helsinki.fi/tsoha/area/1)
 * [Topic](http://joju.users.cs.helsinki.fi/tsoha/topic/1)
+* [Topic luonti](http://joju.users.cs.helsinki.fi/tsoha/topic/new)
