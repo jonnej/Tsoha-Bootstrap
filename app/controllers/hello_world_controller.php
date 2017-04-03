@@ -7,11 +7,15 @@
     }
 
     public static function sandbox(){
-    $message = Message::findByTopic(1);
-    $messages = Message::all();
-    // Kint-luokan dump-metodi tulostaa muuttujan arvon
-    Kint::dump($messages);
-    Kint::dump($message);
+      $topic = new Topic(array(
+        'area_id' => 1,
+        'player_id' => 1.
+        'name' => 'd'
+
+   ));
+   $errors = $topic->errors();
+
+   Kint::dump($errors);
   }
 
 

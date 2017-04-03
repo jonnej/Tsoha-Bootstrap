@@ -6,6 +6,7 @@
 
     public function __construct($attributes){
       parent::__construct($attributes);
+      $this->validators = array('validate_integer_is_numeric(1)', 'validate_integer_is_numeric()')
   }
 
     public function save(){

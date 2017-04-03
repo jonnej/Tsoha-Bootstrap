@@ -18,12 +18,46 @@
     public function errors(){
       // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
       $errors = array();
+      $validator_errors = array();
 
       foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        $validator_errors[] = $validator
+      }
+      $errors = array_merge($errors, $validator_errors);
+      return $errors;
+    }
+
+    public function validate_string_min_length($string, $length){
+      $errors = array();
+
+      if(strlen($this->$string) < $length){
+        $errors[] = $string . ' pituus tulee olla vähintään ' . $length . ' merkkiä!';
       }
 
       return $errors;
     }
+
+    public function validate_string_max_length($string, $length){
+      $errors = array();
+
+      if(strlen($this->$string) > $length){
+        $errors[] = $string . ' pituus tulee olla enintään ' . $length . ' merkkiä!';
+      }
+
+      return $errors;
+    }
+
+    public function validate_integer_is_numeric($integer){
+      $errors = array();
+
+      if(is_numeric($this->$integer)){
+        return $errors;
+      }
+      $errors[] = $integer . ' ei ole numeraali';
+      return $errors;
+    }
+
+
 
   }
