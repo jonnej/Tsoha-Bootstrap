@@ -9,9 +9,8 @@
     public static function sandbox(){
       $topic = new Topic(array(
         'area_id' => 1,
-        'player_id' => 1.
-        'name' => 'd'
-
+        'player_id' => 1,
+        'name' => 'asdf'
    ));
    $errors = $topic->errors();
 

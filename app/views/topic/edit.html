@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+  <h1>Muokkaa topicia:</h1>
+
+  <form method="post" action="{{base_path}}/topic/{{topic.id}}">
+    <!-- <div class="form-group">
+      <label>Area id</label>
+      <input name="area_id" class="form-control" value="{{attributes.area_id}}" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Player id</label>
+      <input name="player_id" class="form-control" value="{{attributes.player_id}}" type="text">
+    </div> -->
+
+    <div class="form-group">
+      <label>Topicin nimi</label>
+      <input name="name" class="form-control" value="{{topic.name}}" type="text" maxlength="75">
+    </div>
+
+    <div class="form-group">
+      <label>Aloitusviesti</label>
+      <textarea name="msgtext" class="form-control" value="{{firstMessage.msgtext}}" type="text" maxlength="1000"></textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Muokkaa topicia</button>
+    </div>
+  </form>
+    <p><a href="{{base_path}}/topic/{{topic.id}}" class ="btn btn-primary">Takaisin {{topic.area_id.name}}</a></p>
+{% endblock %}

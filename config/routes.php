@@ -60,6 +60,14 @@
     TopicController::show($id);
   });
 
+  $routes->post('/topic/:id/edit', function($id){
+    TopicController::edit($id);
+  });
+
   $routes->post('/topic', function(){
     TopicController::store();
+  });
+
+  $routes->post('/topic/:id', function($id){
+    TopicController::update($id);
   });

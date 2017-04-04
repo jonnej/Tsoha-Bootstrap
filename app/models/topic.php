@@ -6,7 +6,7 @@
 
     public function __construct($attributes){
       parent::__construct($attributes);
-      $this->validators = array('validate_integer_is_numeric(1)', 'validate_integer_is_numeric()')
+      $this->validators = array('validate_name');
   }
 
     public function save(){
@@ -17,6 +17,18 @@
       $this->id = $row['id'];
 
     }
+
+    public function update($id, $attributes){
+      $query = DB::connection()->prepare('UPDATE Topic SET (area_id, player_id, name) VALUES (:area_id, :player_id, :name) WHERE id = :id RETURNING id');
+      $query->execute(array('area_id' => $attributes['area_id'], 'player_id' => $attributes['player_id'], 'name' => $attributes['name']));
+      $row = $query->fetch();
+      $this->id = $row['id'];
+    }
+
+    public function destroy($id) {
+    $query = DB::connection()->prepare('DELETE FROM Topic WHERE id = :id');
+    $query->execute(array('id' => $id));
+}
 
     public static function find($id) {
       $query = DB::connection()->prepare('SELECT * FROM Topic WHERE id = :id');
@@ -69,4 +81,42 @@
       echo $result[0];
 
     }
+
+    public static function firstTopicMessage($topic_id){
+      $query = DB::connection()->prepare('SELECT * FROM Message WHERE topic_id = :topic_id ORDER BY id ASC LIMIT 1');
+      $query->execute(array('topic_id' => $topic_id));
+      $row = $query->fetch();
+
+      if($row){
+        $message = new Message(array(
+        'id' => $row['id'],
+        'player_id' => $row['player_id'],
+        'topic_id' => $row['topic_id'],
+        'msgtext' => $row['msgtext'],
+        'added' => $row['added'],
+        'modified' => $row['modified']
+      ));
+      return $message;
+      }
+      return null;
+    }
+
+    public function validate_name(){
+      $errors = array();
+
+      if(strlen(preg_replace('/\s+/', '', $this->name)) < 3){
+        $errors[] = 'Topicin nimessä pitää olla vähintään 3 merkkiä';
+      }
+
+      if(strlen($this->name) > 75){
+        $errors[] = 'Topicin nimi ei saa olla yli 75 merkkiä';
+      }
+
+      return $errors;
+    }
+
+
+
+
+
 }
