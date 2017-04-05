@@ -19,10 +19,9 @@
     }
 
     public function update($id, $attributes){
-      $query = DB::connection()->prepare('UPDATE Topic SET (area_id, player_id, name) VALUES (:area_id, :player_id, :name) WHERE id = :id RETURNING id');
-      $query->execute(array('area_id' => $attributes['area_id'], 'player_id' => $attributes['player_id'], 'name' => $attributes['name']));
-      $row = $query->fetch();
-      $this->id = $row['id'];
+      $query = DB::connection()->prepare('UPDATE Topic SET (area_id, player_id, name) VALUES (:area_id, :player_id, :name) WHERE id = :id');
+      $query->execute(array('id' => $id, 'area_id' => $attributes['area_id'], 'player_id' => $attributes['player_id'], 'name' => $attributes['name']));
+
     }
 
     public function destroy($id) {
