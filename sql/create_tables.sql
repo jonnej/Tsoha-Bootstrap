@@ -21,7 +21,7 @@ CREATE TABLE Area(
 
 CREATE TABLE Topic(
   id SERIAL PRIMARY KEY,
-  area_id INTEGER REFERENCES Area(id),
+  area_id INTEGER REFERENCES Area(id) ON DELETE CASCADE,
   player_id INTEGER REFERENCES Player(id),
   name varchar(75) NOT NULL,
   added timestamp DEFAULT current_timestamp,
@@ -30,8 +30,8 @@ CREATE TABLE Topic(
 
 CREATE TABLE Message(
   id SERIAL PRIMARY KEY,
-  player_id INTEGER REFERENCES Player(id),
-  topic_id INTEGER REFERENCES Topic(id),
+  player_id INTEGER REFERENCES Player(id) ON DELETE CASCADE,
+  topic_id INTEGER REFERENCES Topic(id) ON DELETE CASCADE,
   msgtext varchar(1000) NOT NULL,
   added timestamp DEFAULT current_timestamp,
   modified timestamp

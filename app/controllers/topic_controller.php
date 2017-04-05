@@ -85,7 +85,7 @@
 
       if(count($errors) == 0){
         $topic->update($id, $attributes);
-        $firstmsg = Topic::firstTopicMessage();
+        $firstmsg = Topic::firstTopicMessage($topic->id);
         $msg_id = $firstmsg->id;
         $messageAttributes = array(
           'id' => $msg_id,
@@ -95,14 +95,23 @@
         );
 
         $message = new Message($messageAttributes);
-        $firstmsg = Topic::firstTopicMessage();
         $message->update($msg_id, $messageAttributes);
 
-        Redirect::to('/topic/' . $topic->id, array('message' => 'Uusi topic luotu!'));
+        Redirect::to('/topic/' . $topic->id, array('message' => 'Topic muokattiin onnistuneesti!'));
 
       }else{
         View::make('topic/edit.html', array('errors' => $errors, 'attributes' => $attributes));
       }
+    }
+
+    public static function destroy($id){
+      // $topic = Topic::find($id);
+      $topic = new Topic(array('id' => $id));
+      // $area_id = $topic->area_id;
+      $topic->destroy($id);
+
+      Redirect::to('/area', array('message' => 'Topic ja sen viestit poistettiin onnistuneesti'));
+
     }
 
 

@@ -8,13 +8,17 @@
     HelloWorldController::sandbox();
   });
 
-  $routes->get('/login', function() {
-    HelloWorldController::login();
-  });
-
   $routes->get('/register', function() {
     HelloWorldController::register();
   });
+
+  $routes->get('/login', function() {
+    PlayerController::login();
+  });
+
+  $routes->post('/login', function(){
+  PlayerController::handle_login();
+});
 
   $routes->get('/area', function() {
     AreaController::index();
@@ -31,14 +35,6 @@
   $routes->post('/area', function(){
     AreaController::store();
   });
-
-  // $routes->get('/areatopics', function() {
-  //   HelloWorldController::areatopics();
-  // });
-  //
-  // $routes->get('/topic', function() {
-  //   HelloWorldController::topic();
-  // });
 
   $routes->get('/search', function() {
     HelloWorldController::search();
@@ -70,4 +66,8 @@
 
   $routes->post('/topic/:id', function($id){
     TopicController::update($id);
+  });
+
+  $routes->post('/topic/:id/destroy', function($id){
+    TopicController::destroy($id);
   });

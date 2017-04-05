@@ -19,7 +19,7 @@
     }
 
     public function update($id, $attributes){
-      $query = DB::connection()->prepare('UPDATE Topic SET (area_id, player_id, name) VALUES (:area_id, :player_id, :name) WHERE id = :id');
+      $query = DB::connection()->prepare('UPDATE Topic SET (area_id, player_id, name) = (:area_id, :player_id, :name) WHERE id = :id');
       $query->execute(array('id' => $id, 'area_id' => $attributes['area_id'], 'player_id' => $attributes['player_id'], 'name' => $attributes['name']));
 
     }
@@ -27,6 +27,9 @@
     public function destroy($id) {
     $query = DB::connection()->prepare('DELETE FROM Topic WHERE id = :id');
     $query->execute(array('id' => $id));
+
+    // $query = DB::connection()->prepare('DELETE FROM Message WHERE topic_id = :id');
+    // $query->execute(array('topic_id' => $id));
 }
 
     public static function find($id) {

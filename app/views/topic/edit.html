@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% import "macros/forms.html" as forms %}
 
 
   <h1>Muokkaa topicia:</h1>
 
   <form method="post" action="{{base_path}}/topic/{{topic.id}}">
+    <!-- TÄSSÄ OIKEITA HOMMIA KUN KIRJAUTUMINEN JA SESSIOT TOIMII
+    <div class="form-group">
+      <input name="player_id" value="{{topic.player_id}}" type="hidden">
+    </div>
+
+    <div class="form-group">
+      <input name="area_id" value="{{topic.area_id}}" type="hidden">
+    </div> -->
+
     <div class="form-group">
       <label>Area id</label>
       <input name="area_id" class="form-control" value="{{attributes.area_id}}" type="text">
@@ -30,5 +39,5 @@
       <button type="submit" class="btn btn-success">Muokkaa topicia</button>
     </div>
   </form>
-    <p><a href="{{base_path}}/topic/{{topic.id}}" class ="btn btn-primary">Takaisin {{topic.area_id.name}}</a></p>
+    <p>{{forms.back_button("#{base_path}/topic/#{topic.id}")}}
 {% endblock %}

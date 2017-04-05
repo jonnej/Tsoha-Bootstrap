@@ -19,7 +19,7 @@
  }
 
  public function update($id, $attributes){
-   $query = DB::connection()->prepare('UPDATE Message SET (player_id, topic_id, msgtext) VALUES (:player_id, :topic_id, :msgtext) WHERE id = :id');
+   $query = DB::connection()->prepare('UPDATE Message SET (player_id, topic_id, msgtext) = (:player_id, :topic_id, :msgtext) WHERE id = :id');
    $query->execute(array('id' => $id, 'player_id' => $attributes['player_id'], 'topic_id' => $attributes['topic_id'], 'msgtext' => $attributes['msgtext']));
  }
 

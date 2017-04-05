@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
 
 <div class="alert alert-success">
   {{message}}
@@ -8,13 +9,16 @@
   <h1>{{topic.name}}</h1>
 
 <br>
-  <p><a href="{{base_path}}/message/new" class ="btn btn-primary">Uusi viesti</a>
-    <form method="post" action="{{base_path}}/topic/{{topic.id}}/edit">
-      <div class="form group">
-        <button type="submit" class="btn btn-success">Muokkaa topicia</button>
-      </div>
-    </form>
-  </p>
+
+
+
+      {{forms.new_button("#{base_path}/message/new", "Uusi Viesti")}}
+
+      {{forms.edit_button("#{base_path}/topic/#{topic.id}/edit", "Muokkaa Topicia")}}
+
+      {{forms.destroy_button("#{base_path}/topic/#{topic.id}/destroy", "Poista Topic")}}
+
+
   <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -34,5 +38,6 @@
         {% endfor %}
       </tbody>
     </table>
-    <p><a href="{{base_path}}/area/{{topic.area_id}}" class ="btn btn-primary">Takaisin {{topic.area_id.name}}</a></p>
-{% endblock %}
+    <p>{{forms.back_button("#{base_path}/area/#{topic.area_id}")}}</p>
+
+  {% endblock %}
