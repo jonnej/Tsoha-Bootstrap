@@ -7,7 +7,7 @@
     if(isset($_SESSION['player'])){
       $player_id = $_SESSION['player'];
 
-      $player = Player::find($player_id);
+      $player = Player::find_by_id($player_id);
 
       return $player;
     }

@@ -9,7 +9,11 @@
   });
 
   $routes->get('/register', function() {
-    HelloWorldController::register();
+    PlayerController::register();
+  });
+
+  $routes->post('/register', function(){
+    PlayerController::store();
   });
 
   $routes->get('/login', function() {
@@ -17,8 +21,12 @@
   });
 
   $routes->post('/login', function(){
-  PlayerController::handle_login();
-});
+    PlayerController::handle_login();
+  });
+
+  $routes->get('/player/:id', function($id){
+    PlayerController::show($id);
+  });
 
   $routes->get('/area', function() {
     AreaController::index();

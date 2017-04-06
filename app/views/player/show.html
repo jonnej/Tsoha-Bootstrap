@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+
+<div class="alert alert-success">
+  {{message}}
+</div>
+
+  <h1>Käyttäjän {{player.nickname}} tietosivut</h1>
+
+<br>
+  <p>{{player.nickname}} viimeisimmät lähetetyt viestit</p>
+  <table class="table table-striped table-bordered" width="600">
+      <thead>
+        <tr>
+          <th>Linkki Topiciin</th>
+          <th>Viesti</th>
+          <th>Lähetysaika</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for message in messages %}
+        <tr>
+          <td width="10%"><a href="{{base_path}}/topic/{{message.topic_id}}">Click</a></td>
+          <td width="75%">{{message.msgtext}}</td>
+          <td width="15%">{{message.added}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p>{{forms.back_button("#{base_path}/area/#{topic.area_id}")}}</p>
+
+  {% endblock %}

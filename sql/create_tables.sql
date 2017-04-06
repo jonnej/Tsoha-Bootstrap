@@ -1,7 +1,7 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 CREATE TABLE Player(
   id SERIAL PRIMARY KEY,
-  nickname varchar(50) UNIQUE NOT NULL,
+  nickname varchar(20) UNIQUE NOT NULL,
   password varchar(50) NOT NULL,
   created timestamp DEFAULT current_timestamp,
   admin boolean DEFAULT FALSE
