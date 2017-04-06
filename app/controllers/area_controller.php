@@ -10,6 +10,8 @@
     }
 
     public static function show($id){
+      self::player_logged_in();
+      $_SESSION['area_id'] = $id;
       $area = Area::find($id);
       $topics = Topic::findByArea($id);
       Kint::dump($area);
@@ -18,7 +20,8 @@
     }
 
     public static function newArea(){
-      View::make('area/new.html');
+      $session = $_SESSION;
+      View::make('area/new.html', array('session' => $session));
     }
 
     public static function store(){

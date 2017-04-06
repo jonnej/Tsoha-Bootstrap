@@ -3,8 +3,9 @@
   class MessageController extends BaseController{
 
     public static function newMessage(){
-
-      View::make('message/new.html');
+      $session = $_SESSION;
+      Kint::dump($session);
+      View::make('message/new.html', array('session' => $session));
     }
 
     public static function store(){

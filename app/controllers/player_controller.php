@@ -17,6 +17,12 @@
       View::make('player/show.html', array('player' => $player, 'messages' => $messages));
     }
 
+    public static function logout(){
+      $_SESSION['player'] = null;
+      Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+    }
+
+
     public static function handle_login(){
       $params = $_POST;
 
@@ -26,6 +32,7 @@
       View::make('player/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'nickname' => $params['nickname']));
     }else{
       $_SESSION['player'] = $player->id;
+      $_SESSION['player_info'] = $player;
 
       Redirect::to('/area', array('message' => 'Tervetuloa takaisin keskustelemaan' . $player->nickname . '!'));
     }
@@ -44,7 +51,7 @@
       if(count($errors) == 0){
         $player->save();
 
-        Redirect::to('/area', array('message' => 'Uusi käyttäjä luotu! Tervetuloa!'));
+        Redirect::to('/login', array('message' => 'Uusi käyttäjä luotu! Tervetuloa! Kirjautukaa sisään olkaa hyvä'));
       }else{
         View::make('player/register.html', array('errors' => $errors, 'attributes' => $attributes));
       }

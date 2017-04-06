@@ -14,7 +14,10 @@
     return null;
     }
 
-    public static function check_logged_in(){
+    public static function player_logged_in(){
+      if (!isset($_SESSION['player'])){
+        Redirect::to('/login', array('message' => 'Teidän täytyy kirjautua katsoaksenne salaisuuksia!'));
+      }
       // Toteuta kirjautumisen tarkistus tähän.
       // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
     }

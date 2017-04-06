@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-  <h1>Viestin lähetys</h1>
+  <h1>Viestin lähetys topiciin</h1>
 
 <form method="post" action="{{base_path}}/message">
   <div class="form-group">
-    <label>Player id</label>
-    <input name="player_id" class="form-control" type="text">
+    <input name="player_id" value="{{session.player}}" type="hidden">
   </div>
 
   <div class="form-group">
-    <label>Topic id</label>
-    <input name="topic_id" class="form-control" type="text">
+    <input name="topic_id" value="{{session.topic_id}}" type="hidden">
   </div>
 
   <div class="form-group">

@@ -28,6 +28,10 @@
     PlayerController::show($id);
   });
 
+  $routes->post('/logout', function() {
+    PlayerController::logout();
+  });
+
   $routes->get('/area', function() {
     AreaController::index();
   });

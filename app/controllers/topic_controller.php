@@ -3,16 +3,19 @@
   class TopicController extends BaseController{
 
     public static function show($id){
+      $_SESSION['topic_id'] = $id;
       $topic = Topic::find($id);
       $messages = Message::findByTopic($id);
       Kint::dump($topic);
       Kint::dump($messages);
+      Kint::dump($_SESSION);
       View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic));
     }
 
     public static function newTopic(){
-
-      View::make('topic/new.html');
+      $session = $_SESSION;
+      Kint::dump($session);
+      View::make('topic/new.html', array('session' => $session));
     }
 
     public static function edit($id){
@@ -30,14 +33,13 @@
         'area_id' => $params['area_id'],
         'player_id' => $params['player_id'],
         'name' => $params['name'],
-        'msgtext' => $params['msgtext']
       );
 
       $topic = new Topic($attributes);
       $errors = $topic->errors();
 
 
-      if(strlen($attributes['msgtext']) < 1 || strlen($attributes['msgtext']) > 1000){
+      if(strlen($params['msgtext']) < 1 || strlen($params['msgtext']) > 1000){
         $errors[] = 'Viestin pituus pitää olla vähintään 1 ja enintään 1000 merkkiä';
       }
 

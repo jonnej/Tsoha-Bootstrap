@@ -16,23 +16,13 @@
 
 
   <form method="post" action="{{base_path}}/topic">
-    <!-- TÄSSÄ OIKEITA HOMMIA KUN KIRJAUTUMINEN JA SESSIOT TOIMII
+
     <div class="form-group">
-      <input name="player_id" value="{{topic.player_id}}" type="hidden">
+      <input name="area_id" value="{{session.area_id}}" type="hidden">
     </div>
 
     <div class="form-group">
-      <input name="area_id" value="{{topic.area_id}}" type="hidden">
-    </div> -->
-
-    <div class="form-group">
-      <label>Area id</label>
-      <input name="area_id" class="form-control" value="{{attributes.area_id}}" type="text">
-    </div>
-
-    <div class="form-group">
-      <label>Player id</label>
-      <input name="player_id" class="form-control" value="{{attributes.player_id}}" type="text">
+      <input name="player_id" value="{{session.player}}" type="hidden">
     </div>
 
     <div class="form-group">

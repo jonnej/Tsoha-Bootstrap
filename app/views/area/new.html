@@ -5,8 +5,7 @@
 
 <form method="post" action="{{base_path}}/area">
   <div class="form-group">
-    <label>Player id</label>
-    <input name="player_id" class="form-control" type="text">
+    <input name="player_id" value="{{session.player}}" type="hidden">
   </div>
 
   <div class="form-group">
