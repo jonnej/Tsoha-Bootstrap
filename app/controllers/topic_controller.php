@@ -3,6 +3,7 @@
   class TopicController extends BaseController{
 
     public static function show($id){
+      self::player_logged_in();
       $_SESSION['topic_id'] = $id;
       $topic = Topic::find($id);
       $messages = Message::findByTopic($id);
@@ -13,12 +14,14 @@
     }
 
     public static function newTopic(){
+      self::player_logged_in();
       $session = $_SESSION;
       Kint::dump($session);
       View::make('topic/new.html', array('session' => $session));
     }
 
     public static function edit($id){
+      self::player_logged_in();
       $topic = Topic::find($id);
       $first_message = Topic::firstTopicMessage($id);
       Kint::dump($topic);
@@ -107,9 +110,7 @@
     }
 
     public static function destroy($id){
-      // $topic = Topic::find($id);
       $topic = new Topic(array('id' => $id));
-      // $area_id = $topic->area_id;
       $topic->destroy($id);
 
       Redirect::to('/area', array('message' => 'Topic ja sen viestit poistettiin onnistuneesti'));

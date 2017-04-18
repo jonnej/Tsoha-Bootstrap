@@ -3,6 +3,7 @@
   class AreaController extends BaseController{
 
     public static function index(){
+      self::player_logged_in();
       $areas = Area::all();
       Kint::dump($areas);
       View::make('area/index.html', array('areas' => $areas));
@@ -20,6 +21,7 @@
     }
 
     public static function newArea(){
+      self::player_logged_in();
       $session = $_SESSION;
       View::make('area/new.html', array('session' => $session));
     }
@@ -27,15 +29,32 @@
     public static function store(){
 
       $params = $_POST;
-      $area = new Area(array(
+      $attributes = array(
         'player_id' => $params['player_id'],
         'name' => $params['name'],
         'description' => $params['description']
 
-      ));
+      );
 
-      $area->save();
+      $area = new Area($attributes);
+      $errors = $area->errors();
 
-      Redirect::to('/area/' . $area->id, array('message' => 'Uusi alue luotu!'));
+      if(count($errors) == 0){
+        $area->save();
+
+        Redirect::to('/area/' . $area->id, array('message' => 'Uusi keskustelualue luotiin onnistuneesti!'));
+      }else{
+        View::make('area/new.html', array('errors' => $errors, 'attributes' => $attributes));
+      }
+
+
+    }
+
+    public static function destroy($id){
+      $area = new Area(array('id' => $id));
+      $area->destroy($id);
+
+      Redirect::to('/area', array('message' => 'Keskustelualue ja sen sisältö poistettiin onnistuneesti'));
+
     }
   }

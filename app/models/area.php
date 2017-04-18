@@ -6,6 +6,7 @@
 
     public function __construct($attributes){
       parent::__construct($attributes);
+      $this->validators = array('validate_name', 'validate_description');
   }
 
     public function save(){
@@ -54,26 +55,6 @@
 
     }
 
-    // public static function areaTopics($area_id){
-    //   $query = DB::connection()->prepare('SELECT * FROM Topic WHERE area_id = :area_id');
-    //   $query->execute(array('area_id' => $area_id));
-    //   $rows = $query->fetchAll();
-    //   $topics = array();
-    //
-    //   foreach($rows as $row){
-    //     $topics = new Topic(array(
-    //     'id' => $row['id'],
-    //     'area_id' => $row['area_id'],
-    //     'player_id' => $row['player_id'],
-    //     'name' => $row['name'],
-    //     'added' => $row['added'],
-    //     'modified' => $row['modified']
-    //   ));
-    //   }
-    //
-    //   return $topics;
-    // }
-
     public static function topicCount($area_id){
       $query = DB::connection()->prepare('SELECT COUNT(*) FROM Topic WHERE area_id = :area_id');
       $query->execute(array('area_id' => $area_id));
@@ -100,6 +81,34 @@
 
 
       return $result;
+    }
+
+    public function validate_name(){
+      $errors = array();
+
+      if(strlen(preg_replace('/\s+/', '', $this->name)) < 3){
+        $errors[] = 'Alueen nimessä pitää olla vähintään 3 merkkiä';
+      }
+
+      if(strlen($this->name) > 50){
+        $errors[] = 'Alueen nimi ei saa olla yli 50 merkkiä';
+      }
+
+      return $errors;
+    }
+
+    public function validate_description(){
+      $errors = array();
+
+      if(strlen(preg_replace('/\s+/', '', $this->description)) < 10){
+        $errors[] = 'Alueen kuvaus pitää olla vähintään 10 merkkiä';
+      }
+
+      if(strlen($this->description) > 150){
+        $errors[] = 'Alueen kuvaus ei saa olla yli 150 merkkiä';
+      }
+
+      return $errors;
     }
 
 
