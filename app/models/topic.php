@@ -10,12 +10,10 @@
   }
 
     public function save(){
-
       $query = DB::connection()->prepare('INSERT INTO Topic (area_id, player_id, name) VALUES (:area_id, :player_id, :name) RETURNING id');
       $query->execute(array('area_id' => $this->area_id, 'player_id' => $this->player_id, 'name' => $this->name));
       $row = $query->fetch();
       $this->id = $row['id'];
-
     }
 
     public function update($id, $attributes){

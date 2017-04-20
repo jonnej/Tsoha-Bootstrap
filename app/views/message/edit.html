@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+
+
+  <h1>Muokkaa viestiä:</h1>
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+<form method="post" action="{{base_path}}/message/{{message.id}}">
+  <div class="form-group">
+    <input name="player_id" value="{{session.player}}" type="hidden">
+  </div>
+
+  <div class="form-group">
+    <input name="topic_id" value="{{message.topic_id}}" type="hidden">
+  </div>
+
+  <div class="form-group">
+    <input name="message_id" value="{{message.id}}" type="hidden">
+  </div>
+
+  <div class="form-group">
+    <label>Viesti</label>
+    <textarea name="msgtext" class="form-control" type="text" maxlength="1000">{{message.msgtext}}</textarea>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Lähetä viesti</button>
+  </div>
+</form>
+
+    <p>{{forms.back_button("#{base_path}/topic/#{topic.id}")}}
+{% endblock %}

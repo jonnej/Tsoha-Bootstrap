@@ -53,7 +53,7 @@
                   <li><a href="/tsoha/search">Haku</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                  <li><a href="/tsoha/player/1" class="btn btn-info">Omat tiedot</a></li>
+                  <li><a href="/tsoha/player/{{player_logged_in.id}}" class="btn btn-info">Omat tiedot</a></li>
                   <li><form method="post" action="{{base_path}}/logout">
                       <button type="submit" class="btn btn-primary">Kirjaudu ulos</button>
                   </form></li>

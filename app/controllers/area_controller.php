@@ -41,7 +41,7 @@
 
       if(count($errors) == 0){
         $area->save();
-
+        $_SESSION['area_id'] = $area->id;
         Redirect::to('/area/' . $area->id, array('message' => 'Uusi keskustelualue luotiin onnistuneesti!'));
       }else{
         $session = $_SESSION;

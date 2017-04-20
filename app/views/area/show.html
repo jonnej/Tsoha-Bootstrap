@@ -2,10 +2,11 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
+{% if message %}
 <div class="alert alert-success">
   {{message}}
 </div>
-
+{% endif %}
   <h1>{{area.name}}</h1>
 
 <p><a href="{{base_path}}/topic/new" class ="btn btn-primary">Uusi Topic</a></p>

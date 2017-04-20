@@ -2,9 +2,11 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
+{% if message %}
 <div class="alert alert-success">
   {{message}}
 </div>
+{% endif %}
 
   <h1>Käyttäjän {{player.nickname}} tietosivut</h1>
 
@@ -30,6 +32,7 @@
         {% endfor %}
       </tbody>
     </table>
-    <p>{{forms.back_button("#{base_path}/area/#{topic.area_id}")}}</p>
+    <p>Yhteensä lähetettyjä viestejä: {{player.sent_messages_count(player.id)}}<p>
+    <p>{{forms.back_button("#{base_path}/area", "Takaisin alueisiin")}}</p>
 
   {% endblock %}

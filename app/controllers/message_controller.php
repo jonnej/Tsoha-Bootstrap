@@ -13,11 +13,11 @@
       self::player_logged_in();
       $session = $_SESSION;
       $message = Message::findById($id);
-      View::make('message/edit.html', array('session' => $session, 'message' => $message));
+      $topic = Topic::find($message->topic_id);
+      View::make('message/edit.html', array('session' => $session, 'message' => $message, 'topic' => $topic));
     }
 
     public static function store(){
-
       $params = $_POST;
       $attributes = array(
         'player_id' => $params['player_id'],
@@ -38,10 +38,10 @@
 
     }
 
-    public static function update(){
-
+    public static function update($id){
       $params = $_POST;
       $attributes = array(
+        'id' => $params['message_id'],
         'player_id' => $params['player_id'],
         'topic_id' => $params['topic_id'],
         'msgtext' => $params['msgtext'],
@@ -51,11 +51,11 @@
       $errors = $message->errors();
 
       if(count($errors) == 0){
-        $message->update();
+        $message->update($id, $attributes);
         Redirect::to('/topic/' . $message->topic_id, array('message' => 'Viestiä muokattiin!'));
       }else{
         $session = $_SESSION;
-        View::make('message/edit.html', array('errors' => $errors, 'attributes' => $attributes, 'session' => $session));
+        View::make('message/edit.html', array('errors' => $errors, 'message' => $message, 'session' => $session));
       }
 
     }
@@ -64,6 +64,6 @@
       $message = new Message(array('id' => $id));
       $message->destroy($id);
 
-      Redirect::to('/topic/' . $topic_id, array('message' => 'Viesti poistettiin onnistuneesti'));
+      Redirect::to('/topic/' . $_SESSION['topic_id'], array('message' => 'Viesti poistettiin onnistuneesti'));
     }
   }

@@ -9,7 +9,7 @@
      $this->validators = array('validate_msgtext');
  }
 
- public function save(){
+  public function save(){
 
    $query = DB::connection()->prepare('INSERT INTO Message (player_id, topic_id, msgtext) VALUES (:player_id, :topic_id, :msgtext) RETURNING topic_id');
    $query->execute(array('player_id' => $this->player_id, 'topic_id' => $this->topic_id, 'msgtext' => $this->msgtext));
@@ -18,10 +18,18 @@
 
  }
 
- public function update($id, $attributes){
+  public function update($id, $attributes){
    $query = DB::connection()->prepare('UPDATE Message SET (player_id, topic_id, msgtext) = (:player_id, :topic_id, :msgtext) WHERE id = :id');
    $query->execute(array('id' => $id, 'player_id' => $attributes['player_id'], 'topic_id' => $attributes['topic_id'], 'msgtext' => $attributes['msgtext']));
  }
+
+ public function destroy($id) {
+ $query = DB::connection()->prepare('DELETE FROM Message WHERE id = :id');
+ $query->execute(array('id' => $id));
+}
+
+
+
 
 
    public static function all(){
@@ -52,7 +60,7 @@
      $row = $query->fetch();
 
      if($row){
-       $messages = new Message(array(
+       $message = new Message(array(
        'id' => $row['id'],
        'player_id' => $row['player_id'],
        'topic_id' => $row['topic_id'],

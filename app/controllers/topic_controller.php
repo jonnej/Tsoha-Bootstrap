@@ -15,15 +15,16 @@
       Kint::dump($topic);
       Kint::dump($messages);
       Kint::dump($_SESSION);
-      View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic));
+      View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic, 'session' => $session));
       }
     }
 
     public static function newTopic(){
       self::player_logged_in();
       $session = $_SESSION;
+      $areas = Area::all();
       Kint::dump($session);
-      View::make('topic/new.html', array('session' => $session));
+      View::make('topic/new.html', array('session' => $session, 'areas' => $areas));
     }
 
     public static function edit($id){
@@ -62,7 +63,7 @@
           'msgtext' => $params['msgtext'],
         ));
         $message->save();
-
+        $_SESSION['topic_id'] = $topic->id;
         Redirect::to('/topic/' . $topic->id, array('message' => 'Uusi topic luotu!'));
 
       }else{
@@ -88,11 +89,6 @@
         $errors[] = 'Viestin pituus pitää olla vähintään 1 ja enintään 1000 merkkiä';
       }
 
-      $messageAttributes = array(
-        'player_id' => $params['player_id'],
-        'topic_id' => $topic->id,
-        'msgtext' => $params['msgtext']
-      );
 
       if(count($errors) == 0){
         $topic->update($id, $attributes);
@@ -111,8 +107,9 @@
         Redirect::to('/topic/' . $topic->id, array('message' => 'Topic muokattiin onnistuneesti!'));
 
       }else{
+        $first_message = Topic::firstTopicMessage($id);
         $session = $_SESSION;
-        View::make('topic/edit.html', array('errors' => $errors, 'attributes' => $attributes, 'session' => $session));
+        View::make('topic/edit.html', array('errors' => $errors, 'topic' => $topic, 'session' => $session, 'first_message' => $first_message));
       }
     }
 

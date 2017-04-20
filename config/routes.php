@@ -60,13 +60,13 @@
     MessageController::store();
   });
 
-  $routes->get('/message/:id/edit', function($id){
+  $routes->post('/message/:id/edit', function($id){
     MessageController::edit($id);
   });
 
-  $routes->post('/message/:id/edit', function($id){
+  $routes->post('/message/:id', function($id){
     MessageController::update($id);
-  })
+  });
 
   $routes->post('/message/:id/destroy', function($id){
     MessageController::destroy($id);
