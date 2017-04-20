@@ -6,7 +6,7 @@
 
    public function __construct($attributes){
      parent::__construct($attributes);
-    //  $this->$validators = array('validate_msgtext');
+     $this->validators = array('validate_msgtext');
  }
 
  public function save(){
@@ -45,6 +45,28 @@
      return $messages;
    }
 
+   public static function findById($id){
+     $query = DB::connection()->prepare('SELECT * FROM Message WHERE id = :id');
+     $query->execute(array('id' => $id));
+
+     $row = $query->fetch();
+
+     if($row){
+       $messages = new Message(array(
+       'id' => $row['id'],
+       'player_id' => $row['player_id'],
+       'topic_id' => $row['topic_id'],
+       'msgtext' => $row['msgtext'],
+       'added' => $row['added'],
+       'modified' => $row['modified']
+     ));
+
+     return $message;
+     }
+
+     return null;
+   }
+
    public static function findByTopic($topic_id){
      $query = DB::connection()->prepare('SELECT * FROM Message WHERE topic_id = :topic_id ORDER BY added ASC');
      $query->execute(array('topic_id' => $topic_id));
@@ -68,11 +90,11 @@
    public function validate_msgtext(){
      $errors = array();
 
-     if(strlen(preg_replace('/\s+/', '', $this->name)) < 1){
+     if(strlen(preg_replace('/\s+/', '', $this->msgtext)) < 1){
        $errors[] = 'Viestin pituus vähintään 1 merkki';
      }
 
-     if(strlen($this->name) > 1000){
+     if(strlen($this->msgtext) > 1000){
        $errors[] = 'Viestin pituus enintään 1000 merkkiä';
      }
 

@@ -27,9 +27,6 @@
     public function destroy($id) {
     $query = DB::connection()->prepare('DELETE FROM Topic WHERE id = :id');
     $query->execute(array('id' => $id));
-
-    // $query = DB::connection()->prepare('DELETE FROM Message WHERE topic_id = :id');
-    // $query->execute(array('topic_id' => $id));
 }
 
     public static function find($id) {

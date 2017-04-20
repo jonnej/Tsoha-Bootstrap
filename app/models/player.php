@@ -53,7 +53,7 @@
       return null;
     }
 
-    public static function find_all_sent_messages_by_id($player_id){
+    public static function find_all_sent_messages($player_id){
       $query = DB::connection()->prepare('SELECT * FROM Message WHERE player_id = :player_id ORDER BY added DESC');
       $query->execute(array('player_id' => $player_id));
       $rows = $query->fetchAll();
@@ -74,7 +74,7 @@
       return $messages;
     }
 
-    public static function sent_messages_count_by_id($player_id){
+    public static function sent_messages_count($player_id){
       $query = DB::connection()->prepare('SELECT COUNT(*) FROM Message WHERE player_id = :player_id');
       $query->execute(array('player_id' => $player_id));
       $result = $query->fetch();

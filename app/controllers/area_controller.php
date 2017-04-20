@@ -44,7 +44,8 @@
 
         Redirect::to('/area/' . $area->id, array('message' => 'Uusi keskustelualue luotiin onnistuneesti!'));
       }else{
-        View::make('area/new.html', array('errors' => $errors, 'attributes' => $attributes));
+        $session = $_SESSION;
+        View::make('area/new.html', array('session' => $session, 'errors' => $errors, 'attributes' => $attributes));
       }
 
 

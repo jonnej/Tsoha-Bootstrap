@@ -13,7 +13,7 @@
     public static function show($id){
       self::player_logged_in();
       $player = Player::find_by_id($id);
-      $messages = Player::find_all_sent_messages_by_id($id);
+      $messages = Player::find_all_sent_messages($id);
 
       View::make('player/show.html', array('player' => $player, 'messages' => $messages));
     }

@@ -2,9 +2,11 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
+{% if message %}
 <div class="alert alert-success">
   {{message}}
 </div>
+{% endif %}
 
   <h1>{{topic.name}}</h1>
 
@@ -14,10 +16,10 @@
 
       {{forms.new_button("#{base_path}/message/new", "Uusi Viesti")}}
 
+      {% if session.player == topic.player_id %}
       {{forms.edit_button("#{base_path}/topic/#{topic.id}/edit", "Muokkaa Topicia")}}
-
       {{forms.destroy_button("#{base_path}/topic/#{topic.id}/destroy", "Poista Topic")}}
-
+      {% endif %}
 
   <table class="table table-striped table-bordered">
       <thead>
@@ -25,6 +27,7 @@
           <th>Käyttäjä</th>
           <th>Viesti</th>
           <th>Lähetysaika</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -32,8 +35,13 @@
         {% for message in messages %}
         <tr>
           <td width="10%">Staattinen käyttäjä</td>
-          <td width="75%">{{message.msgtext}}</td>
+          <td width="55%">{{message.msgtext}}</td>
           <td width="15%">{{message.added}}</td>
+          <td width="20%">
+            {% if session.player == message.player_id %}
+            {{forms.edit_button("#{base_path}/message/#{message.id}/edit", "Muokkaa Viestiä")}}
+            {{forms.destroy_button("#{base_path}/message/#{message.id}/destroy", "Poista Viesti")}}
+            {% endif %}
         </tr>
         {% endfor %}
       </tbody>

@@ -4,13 +4,19 @@
 
     public static function show($id){
       self::player_logged_in();
+      if($id == null) {
+        Redirect::to('/area', array('message' => 'Käynti topiceihin vain klikkaamalla linkkiä!'));
+      }else{
       $_SESSION['topic_id'] = $id;
+
+      $session = $_SESSION;
       $topic = Topic::find($id);
       $messages = Message::findByTopic($id);
       Kint::dump($topic);
       Kint::dump($messages);
       Kint::dump($_SESSION);
       View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic));
+      }
     }
 
     public static function newTopic(){
@@ -105,7 +111,8 @@
         Redirect::to('/topic/' . $topic->id, array('message' => 'Topic muokattiin onnistuneesti!'));
 
       }else{
-        View::make('topic/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        $session = $_SESSION;
+        View::make('topic/edit.html', array('errors' => $errors, 'attributes' => $attributes, 'session' => $session));
       }
     }
 

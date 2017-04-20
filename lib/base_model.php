@@ -27,37 +27,4 @@
       return $errors;
     }
 
-
-    // public function validate_string_min_length($string, $length){
-    //   $errors = array();
-    //
-    //   if(strlen($this->$string) < $length){
-    //     $errors[] = $string . ' pituus tulee olla vähintään ' . $length . ' merkkiä!';
-    //   }
-    //
-    //   return $errors;
-    // }
-    //
-    // public function validate_string_max_length($string, $length){
-    //   $errors = array();
-    //
-    //   if(strlen($this->$string) > $length){
-    //     $errors[] = $string . ' pituus tulee olla enintään ' . $length . ' merkkiä!';
-    //   }
-    //
-    //   return $errors;
-    // }
-    //
-    // public function validate_integer_is_numeric($integer){
-    //   $errors = array();
-    //
-    //   if(is_numeric($this->$integer)){
-    //     return $errors;
-    //   }
-    //   $errors[] = $integer . ' ei ole numeraali';
-    //   return $errors;
-    // }
-
-
-
   }
