@@ -4,25 +4,23 @@
 
   <p><strong>Etsi käyttäjiä</strong></p>
 
-  <form>
+  <form method="post" action="{{base_path}}/search/results">
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input class="form-control" type="text">
+      <input name="nick_search" type="text">
     </div>
-
-    <button type="submit" class="btn btn-primary">Etsi käyttäjä</button>
-  </form>
 <br>
   <p><strong>Etsi topiceja</strong></p>
 
-  <form>
     <div class="form-group">
       <label>Hae topicin nimen perusteella</label>
-      <input class="form-control" type="text">
+      <input name="topic_search" type="text">
     </div>
 
-    <button type="submit" class="btn btn-primary">Hae topiceja</button>
+    <button type="submit" class="btn btn-primary">Hae käyttäjistä ja topiceista</button>
   </form>
+
+  <p>{{forms.back_button("#{base_path}/area", "Takaisin alueisiin")}}</p>
 
 
 

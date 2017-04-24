@@ -2,7 +2,7 @@
 
   class Player extends BaseModel{
 
-    public $id, $nickname, $password, $created, $admin;
+    public $id, $nickname, $password, $added, $admin;
 
     public function __construct($attributes){
       parent::__construct($attributes);
@@ -27,7 +27,7 @@
           'id' => $row['id'],
           'nickname' => $row['nickname'],
           'password' => $row['password'],
-          // 'created' => $row['created'],
+          // 'added' => $row['added'],
           'admin' => $row['admin']
         ));
         return $player;
@@ -36,21 +36,22 @@
     }
 
     public static function find_by_nickname($nickname){
-      $query = DB::connection()->prepare('SELECT * FROM Player WHERE nickname = :nickname');
-      $query->execute(array('nickname' => $nickname));
-      $row = $query->fetch();
+      $query = DB::connection()->prepare('SELECT * FROM Player WHERE nickname LIKE ?');
+      $query->execute(array('%' . $nickname . '%'));
+      $rows = $query->fetchAll();
+      $players = array();
 
-      if($row){
-        $player = new Player(array(
+      foreach($rows as $row){
+        $players[] = new Player(array(
           'id' => $row['id'],
           'nickname' => $row['nickname'],
           'password' => $row['password'],
-          // 'created' => $row['created'],
+          // 'added' => $row['added'],
           'admin' => $row['admin']
         ));
-        return $player;
+
       }
-      return null;
+      return $players;
     }
 
     public static function find_all_sent_messages($player_id){

@@ -1,7 +1,15 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    ForumController::index();
+  });
+
+  $routes->get('/search', function() {
+    ForumController::search();
+  });
+
+  $routes->post('/search/results', function() {
+    ForumController::search_results();
   });
 
   $routes->get('/hiekkalaatikko', function() {
@@ -46,10 +54,6 @@
 
   $routes->post('/area', function(){
     AreaController::store();
-  });
-
-  $routes->get('/search', function() {
-    HelloWorldController::search();
   });
 
   $routes->get('/message/new', function() {

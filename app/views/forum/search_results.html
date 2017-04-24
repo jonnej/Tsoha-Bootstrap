@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Hakutulokset</h1>
+
+  <h2>Käyttäjähaun tulokset</h2>
+  <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Käyttäjätunnus</th>
+          <th>Rekisteröitynyt</th>
+          <th>Viestejä yhteensä</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for player in players %}
+          <tr>
+            <td><a href="{{base_path}}/player/{{player.id}}">{{player.nickname}}</a></td>
+            <td>{{player.registered}}</td>
+            <td>{{player.sent_messages_count(player.id)}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Topichaun tulokset</h2>
+    <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Topicin nimi</th>
+            <th>Topic aloitettu</th>
+            <th>Viestejä yhteensä</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for topic in topics %}
+            <tr>
+              <td><a href="{{base_path}}/topic/{{topic.id}}">{{topic.name}}</a></td>
+              <td>{{topic.added}}</td>
+              <td>{{topic.messageCount(topic.id)}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+
+
+
+{% endblock %}

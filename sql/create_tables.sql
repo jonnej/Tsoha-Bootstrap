@@ -3,7 +3,7 @@ CREATE TABLE Player(
   id SERIAL PRIMARY KEY,
   nickname varchar(20) UNIQUE NOT NULL,
   password varchar(50) NOT NULL,
-  created timestamp DEFAULT current_timestamp,
+  added timestamp DEFAULT current_timestamp,
   admin boolean DEFAULT FALSE
 );
 

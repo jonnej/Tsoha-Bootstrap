@@ -69,6 +69,25 @@
       return $topics;
     }
 
+    public static function find_by_name($name){
+      $query = DB::connection()->prepare('SELECT * FROM Topic WHERE name LIKE ?');
+      $query->execute(array('%' . $name . '%'));
+      $rows = $query->fetchAll();
+      $topics = array();
+
+      foreach($rows as $row){
+        $topics[] = new Topic(array(
+        'id' => $row['id'],
+        'area_id' => $row['area_id'],
+        'player_id' => $row['player_id'],
+        'name' => $row['name'],
+        'added' => $row['added'],
+        'modified' => $row['modified']
+      ));
+      }
+      return $topics;
+    }
+
 
     public static function messageCount($topic_id){
       $query = DB::connection()->prepare('SELECT COUNT(*) FROM Message WHERE topic_id = :topic_id');
