@@ -2,7 +2,7 @@
 
   class Player extends BaseModel{
 
-    public $id, $nickname, $password, $added, $admin;
+    public $id, $nickname, $password, $registered, $admin;
 
     public function __construct($attributes){
       parent::__construct($attributes);
@@ -17,6 +17,29 @@
 
     }
 
+    public static function all(){
+      $query = DB::connection()->prepare('SELECT * FROM Player');
+      $query->execute(array());
+      $rows = $query->fetchAll();
+      $players = array();
+
+      foreach($rows as $row){
+        $players[] = new Player(array(
+          'id' => $row['id'],
+          'nickname' => $row['nickname'],
+          'password' => $row['password'],
+          'registered' => $row['registered'],
+          'admin' => $row['admin']
+        ));
+
+      }
+      return $players;
+    }
+
+    public function get_register_date(){
+      return $this->added;
+    }
+
     public static function find_by_id($id){
       $query = DB::connection()->prepare('SELECT * FROM Player WHERE id = :id');
       $query->execute(array('id' => $id));
@@ -27,7 +50,7 @@
           'id' => $row['id'],
           'nickname' => $row['nickname'],
           'password' => $row['password'],
-          // 'added' => $row['added'],
+          'registered' => $row['registered'],
           'admin' => $row['admin']
         ));
         return $player;
@@ -46,7 +69,7 @@
           'id' => $row['id'],
           'nickname' => $row['nickname'],
           'password' => $row['password'],
-          // 'added' => $row['added'],
+          'registered' => $row['registered'],
           'admin' => $row['admin']
         ));
 

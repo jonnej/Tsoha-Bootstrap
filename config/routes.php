@@ -32,6 +32,10 @@
     PlayerController::handle_login();
   });
 
+  $routes->get('/player', function(){
+    PlayerController::index();
+  });
+
   $routes->get('/player/:id', function($id){
     PlayerController::show($id);
   });

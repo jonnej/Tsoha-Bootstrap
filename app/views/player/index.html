@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Käyttäjälistaus</h1>
+
+
+  <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th><a href="{{base_path}}/player?sort=nickname">Käyttäjänimi</a></th>
+          <th><a href="{{base_path}}/player?sort=registered">Rekisteröitynyt</a></th>
+          <th><a href="{{base_path}}/player?sort=messagecount">Viestejä</a></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for player in players %}
+          <tr>
+            <td><a href="{{base_path}}/player/{{player.id}}">{{player.nickname}}</a></td>
+            <td>{{player.registered}}</td>
+            <td>{{player.sent_messages_count(player.id)}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

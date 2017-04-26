@@ -3,11 +3,23 @@
   class PlayerController extends BaseController{
 
     public static function login(){
+      if(self::player_logged_in()){
+        Redirect::to('tsoha/area', array('message' => 'Olette jo kirjautunut sisään'));
+      }
       View::make('player/login.html');
     }
 
     public static function register(){
+      if(self::player_logged_in()){
+        Redirect::to('tsoha/area', array('message' => 'Olette jo kirjautunut sisään'));
+      }
       View::make('player/register.html');
+    }
+
+    public static function index(){
+      self::player_logged_in();
+      $players = Player::all();
+      View::make('player/index.html', array('players' => $players));
     }
 
     public static function show($id){
