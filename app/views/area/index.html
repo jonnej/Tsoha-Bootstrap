@@ -10,9 +10,9 @@
       <thead>
         <tr>
           <th>Alueen aihe</th>
+          <th>Alueen kuvaus</th>
           <th>Topiceja</th>
           <th>Viestejä</th>
-          <th>Uusin viesti</th>
         </tr>
       </thead>
 
@@ -20,9 +20,9 @@
         {% for area in areas %}
           <tr>
             <td><a href="{{base_path}}/area/{{area.id}}">{{area.name}}</a></td>
+            <td>{{area.description}}</td>
             <td>{{area.topicCount(area.id)}}</td>
             <td>{{area.messageCount(area.id)}}</td>
-            <td>Uusin viesti</td>
         </tr>
         {% endfor %}
       </tbody>
