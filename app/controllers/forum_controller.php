@@ -22,11 +22,7 @@
       if(isset($params['topic_search'])) {
       $topics = Topic::find_by_name($params['topic_search']);
       }
-
-      Kint::dump($players);
-      Kint::dump($topics);
       View::make('forum/search_results.html', array('topics' => $topics, 'players' => $players));
-
     }
 
 

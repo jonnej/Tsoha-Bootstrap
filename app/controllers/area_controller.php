@@ -5,7 +5,6 @@
     public static function index(){
       self::player_logged_in();
       $areas = Area::all();
-      Kint::dump($areas);
       View::make('area/index.html', array('areas' => $areas));
 
     }
@@ -15,8 +14,6 @@
       $_SESSION['area_id'] = $id;
       $area = Area::find($id);
       $topics = Topic::findByArea($id);
-      Kint::dump($area);
-      Kint::dump($topics);
       View::make('area/show.html', array('topics' => $topics, 'area' => $area));
     }
 

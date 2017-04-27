@@ -5,7 +5,6 @@
     public static function newMessage(){
       self::player_logged_in();
       $session = $_SESSION;
-      Kint::dump($session);
       View::make('message/new.html', array('session' => $session));
     }
 

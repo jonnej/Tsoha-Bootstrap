@@ -23,14 +23,10 @@
    $query->execute(array('id' => $id, 'player_id' => $attributes['player_id'], 'topic_id' => $attributes['topic_id'], 'msgtext' => $attributes['msgtext']));
  }
 
- public function destroy($id) {
- $query = DB::connection()->prepare('DELETE FROM Message WHERE id = :id');
- $query->execute(array('id' => $id));
-}
-
-
-
-
+  public function destroy($id) {
+    $query = DB::connection()->prepare('DELETE FROM Message WHERE id = :id');
+    $query->execute(array('id' => $id));
+  }
 
    public static function all(){
 
@@ -94,6 +90,23 @@
 
      return $messages;
    }
+
+   public static function getSender($message_id){
+     $query = DB::connection()->prepare('SELECT * FROM Player INNER JOIN Message ON player.id = message.player_id WHERE message.id = :message_id');
+     $query->execute(array('message_id' => $message_id));
+     $row = $query->fetch();
+
+     if($row){
+       $player = new Player(array(
+         'id' => $row['id'],
+         'nickname' => $row['nickname'],
+         'registered' => $row['registered'],
+       ));
+       return $player;
+     }
+     return null;
+
+     }
 
    public function validate_msgtext(){
      $errors = array();

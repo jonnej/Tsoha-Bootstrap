@@ -41,7 +41,11 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sovelluksen nimi -->
+          {% if player_logged_in %}
+          <a class="navbar-brand" href="/tsoha/area">Keskustelualueet</a>
+          {% else %}
           <a class="navbar-brand" href="{{base_path}}">Keskustelufoorumi</a>
+          {% endif %}
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
@@ -49,14 +53,13 @@
           {% if player_logged_in %}
                   <ul class="nav navbar-nav">
                   <!-- Navigaation linkit -->
-                  <li><a href="/tsoha/area">Keskustelualueet</a></li>
                   <li><a href="/tsoha/player">Kaikki käyttäjät</a></li>
                   <li><a href="/tsoha/search">Haku</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                  <li><a href="/tsoha/player/{{player_logged_in.id}}" class="btn btn-info">Omat tiedot</a></li>
+                  <li><a href="/tsoha/player/{{player_logged_in.id}}" class="btn btn-link">Omat tiedot</a></li>
                   <li><form method="post" action="{{base_path}}/logout">
-                      <button type="submit" class="btn btn-primary">Kirjaudu ulos</button>
+                      <button type="submit" class="btn btn-link">Kirjaudu ulos</button>
                   </form></li>
                   </ul>
                   {% else %}

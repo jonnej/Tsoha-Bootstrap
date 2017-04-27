@@ -12,9 +12,6 @@
       $session = $_SESSION;
       $topic = Topic::find($id);
       $messages = Message::findByTopic($id);
-      Kint::dump($topic);
-      Kint::dump($messages);
-      Kint::dump($_SESSION);
       View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic, 'session' => $session));
       }
     }
@@ -23,7 +20,6 @@
       self::player_logged_in();
       $session = $_SESSION;
       $areas = Area::all();
-      Kint::dump($session);
       View::make('topic/new.html', array('session' => $session, 'areas' => $areas));
     }
 
@@ -31,8 +27,6 @@
       self::player_logged_in();
       $topic = Topic::find($id);
       $first_message = Topic::firstTopicMessage($id);
-      Kint::dump($topic);
-      Kint::dump($first_message);
       View::make('topic/edit.html', array('topic' => $topic, 'first_message' => $first_message));
     }
 
@@ -48,12 +42,9 @@
       $topic = new Topic($attributes);
       $errors = $topic->errors();
 
-
       if(strlen($params['msgtext']) < 1 || strlen($params['msgtext']) > 1000){
         $errors[] = 'Viestin pituus pitää olla vähintään 1 ja enintään 1000 merkkiä';
       }
-
-      Kint::dump($errors);
 
       if(count($errors) == 0){
         $topic->save();
@@ -89,7 +80,6 @@
         $errors[] = 'Viestin pituus pitää olla vähintään 1 ja enintään 1000 merkkiä';
       }
 
-
       if(count($errors) == 0){
         $topic->update($id, $attributes);
         $firstmsg = Topic::firstTopicMessage($topic->id);
@@ -118,7 +108,6 @@
       $topic->destroy($id);
 
       Redirect::to('/area', array('message' => 'Topic ja sen viestit poistettiin onnistuneesti'));
-
     }
 
 

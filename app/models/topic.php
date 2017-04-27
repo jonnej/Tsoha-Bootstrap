@@ -117,6 +117,25 @@
       return null;
     }
 
+    public static function lastTopicMessage($topic_id){
+      $query = DB::connection()->prepare('SELECT * FROM Message WHERE topic_id = :topic_id ORDER BY id DESC LIMIT 1');
+      $query->execute(array('topic_id' => $topic_id));
+      $row = $query->fetch();
+
+      if($row){
+        $message = new Message(array(
+        'id' => $row['id'],
+        'player_id' => $row['player_id'],
+        'topic_id' => $row['topic_id'],
+        'msgtext' => $row['msgtext'],
+        'added' => $row['added'],
+        'modified' => $row['modified']
+      ));
+      return $message;
+      }
+      return null;
+    }
+
     public function validate_name(){
       $errors = array();
 

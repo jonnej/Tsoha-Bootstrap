@@ -34,7 +34,7 @@
       <tbody>
         {% for message in messages %}
         <tr>
-          <td width="10%">Staattinen käyttäjä</td>
+          <td width="10%"><a href="{{base_path}}/player/{{message.player_id}}">{{message.getSender(message.id).nickname}}</a></td>
           <td width="55%">{{message.msgtext}}</td>
           <td width="15%">{{message.added}}</td>
           <td width="20%">
