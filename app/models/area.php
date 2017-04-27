@@ -14,8 +14,12 @@
       $query->execute(array('player_id' => $this->player_id, 'name' => $this->name, 'description' => $this->description));
       $row = $query->fetch();
       $this->id = $row['id'];
-
   }
+
+  public function destroy($id) {
+  $query = DB::connection()->prepare('DELETE FROM Area WHERE id = :id');
+  $query->execute(array('id' => $id));
+}
 
     public static function all(){
       $query = DB::connection()->prepare('SELECT * FROM Area');

@@ -9,6 +9,16 @@ body {
   background-color: #d7ffb3;
 }
 
+.td-align-right{
+    display: inline-block;
+    float: right;
+}
+
+.td-align-right-v{
+    display: inline-block;
+    float: right;
+}
+
 .navbar .container-fluid{
   max-width: 1200px;
   margin: 0px auto;

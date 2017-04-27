@@ -8,7 +8,11 @@
     ForumController::search();
   });
 
-  $routes->post('/search/results', function() {
+  $routes->post('/search/results/users', function() {
+    ForumController::search_results();
+  });
+
+  $routes->post('/search/results/topics', function() {
     ForumController::search_results();
   });
 
@@ -58,6 +62,10 @@
 
   $routes->post('/area', function(){
     AreaController::store();
+  });
+
+  $routes->post('/area/:id/destroy', function($id){
+    AreaController::destroy($id);
   });
 
   $routes->get('/message/new', function() {

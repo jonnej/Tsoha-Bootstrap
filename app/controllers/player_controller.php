@@ -19,13 +19,18 @@
     public static function show($id){
       self::player_logged_in();
       $player = Player::find_by_id($id);
+      $session = $_SESSION;
+      if($player == null){
+        Redirect::to('/area', array('message' => 'Käyttäjää ei ole olemassa'));
+      }
       $messages = Player::find_all_sent_messages($id);
 
-      View::make('player/show.html', array('player' => $player, 'messages' => $messages));
+      View::make('player/show.html', array('player' => $player, 'messages' => $messages, 'session' => $session));
     }
 
     public static function logout(){
       $_SESSION['player'] = null;
+      $_SESSION['player_admin'] = null;
       Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
 
@@ -39,9 +44,9 @@
       View::make('player/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'nickname' => $params['nickname']));
     }else{
       $_SESSION['player'] = $player->id;
-      $_SESSION['player_info'] = $player;
+      $_SESSION['player_admin'] = $player->admin;
 
-      Redirect::to('/area', array('message' => 'Tervetuloa takaisin keskustelemaan' . $player->nickname . '!'));
+      Redirect::to('/area', array('message' => 'Tervetuloa takaisin keskustelemaan ' . $player->nickname . '!'));
     }
   }
 

@@ -14,7 +14,6 @@
       $query->execute(array('nickname' => $this->nickname, 'password' => $this->password));
       $row = $query->fetch();
       $this->id = $row['id'];
-
     }
 
     public static function all(){

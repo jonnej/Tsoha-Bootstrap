@@ -58,7 +58,9 @@
         Redirect::to('/topic/' . $topic->id, array('message' => 'Uusi topic luotu!'));
 
       }else{
-        View::make('topic/new.html', array('errors' => $errors, 'attributes' => $attributes));
+        $session = $_SESSION;
+        $areas = Area::all();
+        View::make('topic/new.html', array('errors' => $errors, 'attributes' => $attributes, 'areas' => $areas, 'session' => $session));
       }
 
     }

@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
+
+{% if message %}
+<div class="alert alert-success">
+  {{message}}
+</div>
+{% endif %}
   <h1>Täällä puhutaan ehkä jopa asiaa...</h1>
 
+{% if session.player_admin == true %}
 <p><a href="{{base_path}}/area/new" class ="btn btn-primary">Uusi Keskustelualue</a></p>
-
+{% endif %}
 <br>
   <table class="table table-striped table-bordered">
       <thead>
@@ -19,7 +26,11 @@
       <tbody>
         {% for area in areas %}
           <tr>
-            <td><a href="{{base_path}}/area/{{area.id}}">{{area.name}}</a></td>
+            <td><a href="{{base_path}}/area/{{area.id}}">{{area.name}}</a>
+              {% if session.player_admin == true %}
+              <span class="td-align-right">{{forms.destroy_button("#{base_path}/area/#{area.id}/destroy", "Poista keskustelualue")}}</span>
+              {% endif %}
+            </td>
             <td>{{area.description}}</td>
             <td>{{area.topicCount(area.id)}}</td>
             <td>{{area.messageCount(area.id)}}</td>

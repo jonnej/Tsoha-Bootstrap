@@ -23,13 +23,16 @@
       <tbody>
         {% for topic in topics %}
           <tr>
-            <td><a href="{{base_path}}/topic/{{topic.id}}">{{topic.name}}</a></td>
+            <td><a href="{{base_path}}/topic/{{topic.id}}">{{topic.name}}</a>
+              {% if session.player_admin == true %}
+              <span class="td-align-right-v">{{forms.destroy_button("#{base_path}/topic/#{topic.id}/destroy", "Poista topic")}}</span>
+              {% endif %}
+            </td>
             <td>{{topic.messageCount(topic.id)}}</td>
             <td>{{topic.lastTopicMessage(topic.id).added}}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-
-    <p><a href="{{base_path}}/area" class ="btn btn-primary">Takaisin alueisiin</a></p>
+    <p>{{forms.back_button("#{base_path}/area", "Takaisin alueisiin")}}</p>
 {% endblock %}
