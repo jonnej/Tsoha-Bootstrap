@@ -18,6 +18,9 @@
           $content['player_logged_in'] = BaseController::get_player_logged_in();
         }
 
+        $session = $_SESSION;
+        $content['session'] = $session;
+
         // Tulostetaan Twig:n renderöimä näkymä
         echo $twig->render($view, $content);
       } catch (Exception $e){

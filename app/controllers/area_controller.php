@@ -5,9 +5,7 @@
     public static function index(){
       self::player_logged_in();
       $areas = Area::all();
-      $session = $_SESSION;
-      Kint::dump($session);
-      View::make('area/index.html', array('areas' => $areas, 'session' => $session));
+      View::make('area/index.html', array('areas' => $areas));
 
     }
 
@@ -16,14 +14,12 @@
       $_SESSION['area_id'] = $id;
       $area = Area::find($id);
       $topics = Topic::findByArea($id);
-      $session = $_SESSION;
-      View::make('area/show.html', array('topics' => $topics, 'area' => $area, 'session' => $session));
+      View::make('area/show.html', array('topics' => $topics, 'area' => $area));
     }
 
     public static function newArea(){
       self::player_logged_in();
-      $session = $_SESSION;
-      View::make('area/new.html', array('session' => $session));
+      View::make('area/new.html', array());
     }
 
     public static function store(){
@@ -44,8 +40,7 @@
         $_SESSION['area_id'] = $area->id;
         Redirect::to('/area/' . $area->id, array('message' => 'Uusi keskustelualue luotiin onnistuneesti!'));
       }else{
-        $session = $_SESSION;
-        View::make('area/new.html', array('session' => $session, 'errors' => $errors, 'attributes' => $attributes));
+        View::make('area/new.html', array('errors' => $errors, 'attributes' => $attributes));
       }
 
 

@@ -12,15 +12,15 @@
       $session = $_SESSION;
       $topic = Topic::find($id);
       $messages = Message::findByTopic($id);
-      View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic, 'session' => $session));
+      View::make('topic/show.html', array('messages' => $messages, 'topic' => $topic));
       }
     }
 
     public static function newTopic(){
       self::player_logged_in();
-      $session = $_SESSION;
+      // $session = $_SESSION;
       $areas = Area::all();
-      View::make('topic/new.html', array('session' => $session, 'areas' => $areas));
+      View::make('topic/new.html', array('areas' => $areas));
     }
 
     public static function edit($id){

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-  <h1>Viestin lähetys topiciin</h1>
+  <h1>Viestin lähetys topiciin: {{topic.name}}</h1>
 
   {% if errors %}
     <div class="alert alert-danger">

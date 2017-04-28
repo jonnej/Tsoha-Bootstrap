@@ -21,3 +21,9 @@
     <button type="submit" class="btn btn-primary">{{text|default('Takaisin')}}</button>
   </form>
 {% endmacro %}
+
+{% macro backer_button(text) %}
+  <form method="get" action="{{server.http_referer}}" style="display: inline-block;">
+    <button type="submit" class="btn btn-primary">{{text|default('Takaisin')}}</button>
+  </form>
+{% endmacro %}

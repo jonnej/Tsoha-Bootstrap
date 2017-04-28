@@ -19,13 +19,12 @@
     public static function show($id){
       self::player_logged_in();
       $player = Player::find_by_id($id);
-      $session = $_SESSION;
       if($player == null){
         Redirect::to('/area', array('message' => 'Käyttäjää ei ole olemassa'));
       }
       $messages = Player::find_all_sent_messages($id);
 
-      View::make('player/show.html', array('player' => $player, 'messages' => $messages, 'session' => $session));
+      View::make('player/show.html', array('player' => $player, 'messages' => $messages));
     }
 
     public static function logout(){

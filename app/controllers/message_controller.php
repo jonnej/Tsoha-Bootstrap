@@ -4,16 +4,16 @@
 
     public static function newMessage(){
       self::player_logged_in();
-      $session = $_SESSION;
-      View::make('message/new.html', array('session' => $session));
+      $topic = Topic::find($_SESSION['topic_id']);
+
+      View::make('message/new.html', array('topic' => $topic));
     }
 
     public static function edit($id){
       self::player_logged_in();
-      $session = $_SESSION;
       $message = Message::findById($id);
       $topic = Topic::find($message->topic_id);
-      View::make('message/edit.html', array('session' => $session, 'message' => $message, 'topic' => $topic));
+      View::make('message/edit.html', array('message' => $message, 'topic' => $topic));
     }
 
     public static function store(){
@@ -32,7 +32,7 @@
         Redirect::to('/topic/' . $message->topic_id, array('message' => 'Viesti lähetetty!'));
       }else{
         $session = $_SESSION;
-        View::make('message/new.html', array('errors' => $errors, 'attributes' => $attributes, 'session' => $session));
+        View::make('message/new.html', array('errors' => $errors, 'attributes' => $attributes));
       }
 
     }
@@ -54,7 +54,7 @@
         Redirect::to('/topic/' . $message->topic_id, array('message' => 'Viestiä muokattiin!'));
       }else{
         $session = $_SESSION;
-        View::make('message/edit.html', array('errors' => $errors, 'message' => $message, 'session' => $session));
+        View::make('message/edit.html', array('errors' => $errors, 'message' => $message));
       }
 
     }
