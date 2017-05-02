@@ -48,6 +48,10 @@
     PlayerController::logout();
   });
 
+  $routes->post('/player/:id/destroy', function($id){
+    PlayerController::destroy($id);
+  });
+
   $routes->get('/area', function() {
     AreaController::index();
   });

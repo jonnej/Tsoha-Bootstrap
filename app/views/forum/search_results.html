@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
   <h1>Hakutulokset</h1>
   {% if players %}
   <h2>Käyttäjähaun tulokset</h2>
@@ -47,6 +48,8 @@
         </tbody>
       </table>
 {% endif %}
+
+  <p>{{forms.back_button("#{base_path}/search", "Takaisin hakuun")}}</p>
 
 
 

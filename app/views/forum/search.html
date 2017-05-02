@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+{% import "macros/forms.html" as forms %}
   <h1>Täällä etsitään ja ehkä löydetään</h1>
 
-  <p><strong>Etsi käyttäjiä {{session.player}}</strong></p>
+  <p><strong>Etsi käyttäjiä</strong></p>
 
   <form method="post" action="{{base_path}}/search/results/users">
     <div class="form-group">
       <label>Käyttäjätunnuksen perusteella</label>
       <input name="nick_search" type="text">
     </div>
-    <button type="submit" class="btn btn-primary">Hae käyttäjistä</button>
+    <button type="submit" class="btn btn-success">Hae käyttäjistä</button>
 <br>
+</form>
 
   <form method="post" action="{{base_path}}/search/results/topics">
   <p><strong>Etsi topiceja</strong></p>
@@ -20,7 +22,7 @@
       <input name="topic_search" type="text">
     </div>
 
-    <button type="submit" class="btn btn-primary">Hae topiceista</button>
+    <button type="submit" class="btn btn-success">Hae topiceista</button>
   </form>
 
   <p>{{forms.back_button("#{base_path}/area", "Takaisin alueisiin")}}</p>

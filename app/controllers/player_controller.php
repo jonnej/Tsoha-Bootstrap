@@ -28,6 +28,10 @@
     }
 
     public static function logout(){
+
+      // foreach ($_SESSION as $value){
+      //   unset($value);
+      // }
       $_SESSION['player'] = null;
       $_SESSION['player_admin'] = null;
       Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
@@ -67,6 +71,13 @@
         View::make('player/register.html', array('errors' => $errors, 'attributes' => $attributes));
       }
 
+    }
+
+    public static function destroy($id){
+      $message = new Player(array('id' => $id));
+      $message->destroy($id);
+
+      Redirect::to('/player', array('message' => 'Käyttäjä poistettiin onnistuneesti'));
     }
 
   }

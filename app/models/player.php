@@ -16,6 +16,11 @@
       $this->id = $row['id'];
     }
 
+    public function destroy($id) {
+    $query = DB::connection()->prepare('DELETE FROM Player WHERE id = :id');
+    $query->execute(array('id' => $id));
+}
+
     public static function all(){
       $query = DB::connection()->prepare('SELECT * FROM Player');
       $query->execute(array());
@@ -35,9 +40,6 @@
       return $players;
     }
 
-    public function get_register_date(){
-      return $this->added;
-    }
 
     public static function find_by_id($id){
       $query = DB::connection()->prepare('SELECT * FROM Player WHERE id = :id');

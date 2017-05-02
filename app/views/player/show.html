@@ -11,7 +11,7 @@
   <h1>Käyttäjän {{player.nickname}} tietosivut</h1>
 
   {% if session.player_admin %}
-  
+  {{forms.destroy_button("#{base_path}/player/#{player.id}/destroy", "Poista käyttäjä")}}
 
   {% endif %}
 

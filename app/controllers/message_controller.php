@@ -4,6 +4,9 @@
 
     public static function newMessage(){
       self::player_logged_in();
+      if(!isset($_SESSION['topic_id'])) {
+        Redirect::to('/area', array());
+      }
       $topic = Topic::find($_SESSION['topic_id']);
 
       View::make('message/new.html', array('topic' => $topic));
