@@ -37,7 +37,9 @@
           <td width="20%">
             {% if session.player == message.player_id %}
             {{forms.edit_button("#{base_path}/message/#{message.id}/edit", "Muokkaa Viestiä")}}
+            {% if topic.firstTopicMessage(topic.id) != message %}
             {{forms.destroy_button("#{base_path}/message/#{message.id}/destroy", "Poista Viesti")}}
+            {% endif %}
             {% endif %}
         </tr>
         {% endfor %}
