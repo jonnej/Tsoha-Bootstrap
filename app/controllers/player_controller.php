@@ -3,10 +3,16 @@
   class PlayerController extends BaseController{
 
     public static function login(){
+      if(isset($_SESSION['player'])) {
+        Redirect::to('/area', array('message' => 'Olet jo kirjautunut sisään'));
+      }
       View::make('player/login.html');
     }
 
     public static function register(){
+      if(isset($_SESSION['player'])) {
+        Redirect::to('/area', array('message' => 'Olet jo kirjautunut sisään. Kirjaudu ulos tehdäksesi uusi nimimerkki'));
+      }
       View::make('player/register.html');
     }
 
@@ -29,11 +35,10 @@
 
     public static function logout(){
 
-      // foreach ($_SESSION as $value){
-      //   unset($value);
-      // }
       $_SESSION['player'] = null;
       $_SESSION['player_admin'] = null;
+      $_SESSION['topic_id'] = null;
+      $_SESSION['area_id'] = null;
       Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
 

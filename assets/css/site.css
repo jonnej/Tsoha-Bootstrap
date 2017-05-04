@@ -9,6 +9,10 @@ body {
   background-color: #d7ffb3;
 }
 
+td {
+    word-break: break-all;
+}
+
 .td-align-right{
     display: inline-block;
     float: right;

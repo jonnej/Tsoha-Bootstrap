@@ -18,7 +18,9 @@
 
     public static function newTopic(){
       self::player_logged_in();
-      // $session = $_SESSION;
+      if(!isset($_SESSION['area_id'])) {
+        Redirect::to('/area', array());
+      }
       $areas = Area::all();
       View::make('topic/new.html', array('areas' => $areas));
     }

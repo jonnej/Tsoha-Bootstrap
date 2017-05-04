@@ -17,7 +17,7 @@
       $players = array();
       $topics = array();
       if(isset($params['nick_search'])) {
-      $players = Player::find_by_nickname($params['nick_search']);
+      $players = Player::find_all_by_nickname($params['nick_search']);
       }
       if(isset($params['topic_search'])) {
       $topics = Topic::find_by_name($params['topic_search']);

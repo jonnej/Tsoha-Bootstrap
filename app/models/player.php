@@ -59,7 +59,7 @@
       return null;
     }
 
-    public static function find_by_nickname($nickname){
+    public static function find_all_by_nickname($nickname){
       $query = DB::connection()->prepare('SELECT * FROM Player WHERE nickname LIKE ?');
       $query->execute(array('%' . $nickname . '%'));
       $rows = $query->fetchAll();
@@ -76,6 +76,19 @@
 
       }
       return $players;
+    }
+
+    public static function check_if_nickname_used($nickname){
+      $query = DB::connection()->prepare('SELECT * FROM Player WHERE nickname ilike :nickname');
+      $query->execute(array('nickname' => $nickname));
+      $row = $query->fetch();
+
+
+      if($row){
+        return true;
+
+      }
+      return false;
     }
 
     public static function find_all_sent_messages($player_id){
@@ -131,7 +144,7 @@
         $errors[] = 'Käyttäjänimen maksimi pituus on 20 merkkiä';
       }
 
-      if($this->find_by_nickname($this->nickname)) {
+      if($this->check_if_nickname_used($this->nickname)) {
         $errors[] = 'Käyttäjänimi on jo käytössä, valitse jokin toinen';
       }
 
@@ -150,7 +163,7 @@
       }
 
       if(!preg_match('/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/', $this->password)){
-        $errors[] = 'Salasanassa pitää olla vähintään yksi kirjain ja yksi numero';
+        $errors[] = 'Salasanassa pitää olla vähintään yksi kirjain ja yksi numero. Erikoismerkkejä ei hyväksytä';
       }
 
       return $errors;

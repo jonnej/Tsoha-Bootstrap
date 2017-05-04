@@ -70,7 +70,7 @@
     }
 
     public static function find_by_name($name){
-      $query = DB::connection()->prepare('SELECT * FROM Topic WHERE name LIKE ?');
+      $query = DB::connection()->prepare('SELECT * FROM Topic WHERE name ILIKE ?');
       $query->execute(array('%' . $name . '%'));
       $rows = $query->fetchAll();
       $topics = array();

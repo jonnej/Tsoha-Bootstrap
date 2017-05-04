@@ -2,6 +2,7 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
   <h1>Hakutulokset</h1>
+
   {% if players %}
   <h2>Käyttäjähaun tulokset</h2>
   <table class="table table-striped table-bordered">
@@ -24,9 +25,7 @@
       </tbody>
     </table>
 
-  {% endif %}
-
-  {% if topics %}
+  {% elseif topics %}
     <h2>Topichaun tulokset</h2>
     <table class="table table-striped table-bordered">
         <thead>
@@ -47,6 +46,9 @@
           {% endfor %}
         </tbody>
       </table>
+
+      {% else %}
+      Valitettavasti hakusanalla ei löytynyt mitään
 {% endif %}
 
   <p>{{forms.back_button("#{base_path}/search", "Takaisin hakuun")}}</p>

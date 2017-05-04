@@ -13,7 +13,7 @@
 <br>
       {{forms.new_button("#{base_path}/message/new", "Uusi Viesti")}}
 
-      {% if session.player == topic.player_id %}
+      {% if session.player == topic.player_id or session.player_admin %}
       {{forms.edit_button("#{base_path}/topic/#{topic.id}/edit", "Muokkaa Topicia")}}
       {{forms.destroy_button("#{base_path}/topic/#{topic.id}/destroy", "Poista Topic")}}
       {% endif %}
@@ -31,12 +31,14 @@
       <tbody>
         {% for message in messages %}
         <tr>
-          <td width="10%"><a href="{{base_path}}/player/{{message.player_id}}">{{message.getSender(message.id).nickname}}</a></td>
-          <td width="55%">{{message.msgtext}}</td>
+          <td width="5%"><a href="{{base_path}}/player/{{message.player_id}}">{{message.getSender(message.id).nickname}}</a></td>
+          <td width="60%">{{message.msgtext}}</td>
           <td width="15%">{{message.added}}</td>
-          <td width="20%">
+          <td width="15%">
             {% if session.player == message.player_id %}
             {{forms.edit_button("#{base_path}/message/#{message.id}/edit", "Muokkaa Viestiä")}}
+            {% endif %}
+            {% if session.player == message.player_id or session.player_admin%}
             {% if topic.firstTopicMessage(topic.id) != message %}
             {{forms.destroy_button("#{base_path}/message/#{message.id}/destroy", "Poista Viesti")}}
             {% endif %}
