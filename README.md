@@ -5,7 +5,12 @@
 Työn aiheena luoda keskustelufoorumi, jossa käyttäjä rekisteröityä, luoda alueille topiceja, kirjoitella viestejä ja paljon (vähän) muuta.
 Kirjautua voi tunnuksilla: Käyttäjätunnus: joju, Salasana: joju1
 
+
+
+
 ## Yleisiä linkkejä:
+
+Linkit eivät enää toiminnassa, koska sovellus ei ole enää pyörimässä users palvelimella.
 
 * [Linkki sovellukseeni](http://joju.users.cs.helsinki.fi/tsoha/)
 * [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
